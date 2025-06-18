@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Book, ChefHat, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -28,29 +27,39 @@ const Index = () => {
     if (savedRecipes) {
       try {
         const parsedRecipes = JSON.parse(savedRecipes);
-        setRecipes(parsedRecipes);
+        if (parsedRecipes && parsedRecipes.length > 0) {
+          setRecipes(parsedRecipes);
+        } else {
+          // If saved recipes is empty array, load sample recipes
+          loadSampleRecipes();
+        }
       } catch (error) {
         console.error('Error loading recipes from localStorage:', error);
-        // If no saved recipes, load sample recipes
+        // If error parsing, load sample recipes
         loadSampleRecipes();
       }
     } else {
-      // Load sample recipes if no saved recipes
+      // If no saved recipes, load sample recipes
       loadSampleRecipes();
     }
   }, []);
 
   const loadSampleRecipes = () => {
+    console.log('Loading sample recipes...');
     const recipesWithIds: Recipe[] = sampleRecipes.map((recipe, index) => ({
       ...recipe,
       id: (Date.now() + index).toString(),
     }));
     setRecipes(recipesWithIds);
+    // Save sample recipes to localStorage
+    localStorage.setItem('recipeBook', JSON.stringify(recipesWithIds));
   };
 
-  // Save recipes to localStorage whenever recipes change
+  // Save recipes to localStorage whenever recipes change (but not on initial load)
   useEffect(() => {
-    localStorage.setItem('recipeBook', JSON.stringify(recipes));
+    if (recipes.length > 0) {
+      localStorage.setItem('recipeBook', JSON.stringify(recipes));
+    }
   }, [recipes]);
 
   // Add new recipe
@@ -182,21 +191,20 @@ const Index = () => {
                   <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
                     <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
+                      {recipes.length === 0 ? 'Loading recipes...' : 'No recipes found'}
                     </h3>
                     <p className="text-gray-600 mb-4">
                       {recipes.length === 0 
-                        ? 'Start building your recipe collection by adding your first recipe!'
+                        ? 'Please wait while we load your recipe collection.'
                         : 'Try adjusting your search terms or category to find what you\'re looking for.'
                       }
                     </p>
                     {recipes.length === 0 && (
                       <Button 
-                        onClick={() => setIsAddDialogOpen(true)}
+                        onClick={loadSampleRecipes}
                         className="bg-orange-500 hover:bg-orange-600 text-white"
                       >
-                        <Plus className="h-4 w-4 mr-2" />
-                        Add Your First Recipe
+                        Load Sample Recipes
                       </Button>
                     )}
                   </div>

@@ -1,32 +1,52 @@
 
 import React, { useState, useEffect } from 'react';
-import { Search, Plus, Book, ChefHat } from 'lucide-react';
+import { Search, Plus, Book, ChefHat, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import AddRecipeForm from '@/components/AddRecipeForm';
+import EditRecipeForm from '@/components/EditRecipeForm';
 import RecipeCard from '@/components/RecipeCard';
 import RecipeDetailModal from '@/components/RecipeDetailModal';
 import { Recipe } from '@/types/Recipe';
+import { sampleRecipes } from '@/data/sampleRecipes';
 
 const Index = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [editingRecipe, setEditingRecipe] = useState<Recipe | null>(null);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
 
   // Load recipes from localStorage on component mount
   useEffect(() => {
     const savedRecipes = localStorage.getItem('recipeBook');
     if (savedRecipes) {
       try {
-        setRecipes(JSON.parse(savedRecipes));
+        const parsedRecipes = JSON.parse(savedRecipes);
+        setRecipes(parsedRecipes);
       } catch (error) {
         console.error('Error loading recipes from localStorage:', error);
+        // If no saved recipes, load sample recipes
+        loadSampleRecipes();
       }
+    } else {
+      // Load sample recipes if no saved recipes
+      loadSampleRecipes();
     }
   }, []);
+
+  const loadSampleRecipes = () => {
+    const recipesWithIds: Recipe[] = sampleRecipes.map((recipe, index) => ({
+      ...recipe,
+      id: (Date.now() + index).toString(),
+    }));
+    setRecipes(recipesWithIds);
+  };
 
   // Save recipes to localStorage whenever recipes change
   useEffect(() => {
@@ -43,13 +63,46 @@ const Index = () => {
     setIsAddDialogOpen(false);
   };
 
-  // Filter recipes based on search term
-  const filteredRecipes = recipes.filter(recipe =>
-    recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    recipe.ingredients.some(ingredient =>
-      ingredient.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
+  // Edit recipe
+  const editRecipe = (updatedRecipe: Omit<Recipe, 'id'>) => {
+    if (editingRecipe) {
+      const updated: Recipe = {
+        ...updatedRecipe,
+        id: editingRecipe.id,
+      };
+      setRecipes(prev => prev.map(recipe => 
+        recipe.id === editingRecipe.id ? updated : recipe
+      ));
+      setIsEditDialogOpen(false);
+      setEditingRecipe(null);
+    }
+  };
+
+  // Filter recipes based on search term and category
+  const filteredRecipes = recipes.filter(recipe => {
+    const matchesSearch = recipe.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      recipe.ingredients.some(ingredient =>
+        ingredient.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    
+    const matchesCategory = activeCategory === 'all' || recipe.category === activeCategory;
+    
+    return matchesSearch && matchesCategory;
+  });
+
+  const categories = [
+    { id: 'all', label: 'All Recipes', count: recipes.length },
+    { id: 'pickles', label: 'Pickles', count: recipes.filter(r => r.category === 'pickles').length },
+    { id: 'fried-rice', label: 'Fried Rice', count: recipes.filter(r => r.category === 'fried-rice').length },
+    { id: 'chinese', label: 'Chinese Food', count: recipes.filter(r => r.category === 'chinese').length },
+    { id: 'curries', label: 'Curries', count: recipes.filter(r => r.category === 'curries').length },
+    { id: 'other', label: 'Other', count: recipes.filter(r => r.category === 'other').length },
+  ];
+
+  const handleEdit = (recipe: Recipe) => {
+    setEditingRecipe(recipe);
+    setIsEditDialogOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
@@ -100,49 +153,77 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Recipe Count */}
-        <div className="mb-6 text-center">
-          <p className="text-gray-600">
-            {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
-          </p>
-        </div>
-
-        {/* Recipes Grid */}
-        {filteredRecipes.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
-              <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
-              </h3>
-              <p className="text-gray-600 mb-4">
-                {recipes.length === 0 
-                  ? 'Start building your recipe collection by adding your first recipe!'
-                  : 'Try adjusting your search terms to find what you\'re looking for.'
-                }
-              </p>
-              {recipes.length === 0 && (
-                <Button 
-                  onClick={() => setIsAddDialogOpen(true)}
-                  className="bg-orange-500 hover:bg-orange-600 text-white"
-                >
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add Your First Recipe
-                </Button>
-              )}
-            </div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredRecipes.map((recipe) => (
-              <RecipeCard
-                key={recipe.id}
-                recipe={recipe}
-                onClick={() => setSelectedRecipe(recipe)}
-              />
+        {/* Category Tabs */}
+        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
+          <TabsList className="grid w-full grid-cols-6 bg-white border border-orange-200">
+            {categories.map((category) => (
+              <TabsTrigger 
+                key={category.id} 
+                value={category.id}
+                className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+              >
+                {category.label} ({category.count})
+              </TabsTrigger>
             ))}
-          </div>
-        )}
+          </TabsList>
+
+          {categories.map((category) => (
+            <TabsContent key={category.id} value={category.id}>
+              <div className="mb-6 text-center">
+                <p className="text-gray-600">
+                  {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
+                  {category.id !== 'all' && ` in ${category.label}`}
+                </p>
+              </div>
+
+              {/* Recipes Grid */}
+              {filteredRecipes.length === 0 ? (
+                <div className="text-center py-12">
+                  <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
+                    <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      {recipes.length === 0 
+                        ? 'Start building your recipe collection by adding your first recipe!'
+                        : 'Try adjusting your search terms or category to find what you\'re looking for.'
+                      }
+                    </p>
+                    {recipes.length === 0 && (
+                      <Button 
+                        onClick={() => setIsAddDialogOpen(true)}
+                        className="bg-orange-500 hover:bg-orange-600 text-white"
+                      >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Add Your First Recipe
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {filteredRecipes.map((recipe) => (
+                    <div key={recipe.id} className="relative group">
+                      <RecipeCard
+                        recipe={recipe}
+                        onClick={() => setSelectedRecipe(recipe)}
+                      />
+                      <Button
+                        onClick={() => handleEdit(recipe)}
+                        size="sm"
+                        variant="outline"
+                        className="absolute top-2 right-2 bg-white/90 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </TabsContent>
+          ))}
+        </Tabs>
       </main>
 
       {/* Recipe Detail Modal */}
@@ -153,6 +234,25 @@ const Index = () => {
           onClose={() => setSelectedRecipe(null)}
         />
       )}
+
+      {/* Edit Recipe Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Edit Recipe</DialogTitle>
+          </DialogHeader>
+          {editingRecipe && (
+            <EditRecipeForm 
+              recipe={editingRecipe}
+              onSubmit={editRecipe}
+              onCancel={() => {
+                setIsEditDialogOpen(false);
+                setEditingRecipe(null);
+              }}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

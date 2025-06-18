@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Clock, Users, ChefHat } from 'lucide-react';
 import { Recipe } from '@/types/Recipe';
 
@@ -10,6 +11,26 @@ interface RecipeCardProps {
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
+  const getCategoryLabel = (category: Recipe['category']) => {
+    switch (category) {
+      case 'pickles': return 'Pickles';
+      case 'fried-rice': return 'Fried Rice';
+      case 'chinese': return 'Chinese';
+      case 'curries': return 'Curries';
+      default: return 'Other';
+    }
+  };
+
+  const getCategoryColor = (category: Recipe['category']) => {
+    switch (category) {
+      case 'pickles': return 'bg-green-100 text-green-800';
+      case 'fried-rice': return 'bg-yellow-100 text-yellow-800';
+      case 'chinese': return 'bg-red-100 text-red-800';
+      case 'curries': return 'bg-orange-100 text-orange-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
   return (
     <Card 
       className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 bg-white border-orange-100 hover:border-orange-300"
@@ -17,14 +38,26 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
     >
       <CardHeader className="p-0">
         {recipe.image ? (
-          <img
-            src={recipe.image}
-            alt={recipe.name}
-            className="w-full h-48 object-cover rounded-t-lg"
-          />
+          <div className="relative">
+            <img
+              src={recipe.image}
+              alt={recipe.name}
+              className="w-full h-48 object-cover rounded-t-lg"
+            />
+            <Badge 
+              className={`absolute top-2 left-2 ${getCategoryColor(recipe.category)}`}
+            >
+              {getCategoryLabel(recipe.category)}
+            </Badge>
+          </div>
         ) : (
-          <div className="w-full h-48 bg-gradient-to-br from-orange-100 to-red-100 rounded-t-lg flex items-center justify-center">
+          <div className="w-full h-48 bg-gradient-to-br from-orange-100 to-red-100 rounded-t-lg flex items-center justify-center relative">
             <ChefHat className="h-12 w-12 text-orange-400" />
+            <Badge 
+              className={`absolute top-2 left-2 ${getCategoryColor(recipe.category)}`}
+            >
+              {getCategoryLabel(recipe.category)}
+            </Badge>
           </div>
         )}
       </CardHeader>

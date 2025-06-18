@@ -7,4 +7,5 @@ export interface Recipe {
   image?: string;
   prepTime?: string;
   servings?: string;
+  category: 'pickles' | 'fried-rice' | 'chinese' | 'curries' | 'other';
 }

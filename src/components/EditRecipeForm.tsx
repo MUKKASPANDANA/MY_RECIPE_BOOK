@@ -1,26 +1,28 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent } from '@/components/ui/card';
 import { Plus, Minus, Upload } from 'lucide-react';
 import { Recipe } from '@/types/Recipe';
 
-interface AddRecipeFormProps {
+interface EditRecipeFormProps {
+  recipe: Recipe;
   onSubmit: (recipe: Omit<Recipe, 'id'>) => void;
+  onCancel: () => void;
 }
 
-const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
+const EditRecipeForm: React.FC<EditRecipeFormProps> = ({ recipe, onSubmit, onCancel }) => {
   const [formData, setFormData] = useState({
-    name: '',
-    ingredients: [''],
-    steps: [''],
-    prepTime: '',
-    servings: '',
-    image: '',
-    category: 'other' as Recipe['category'],
+    name: recipe.name,
+    ingredients: recipe.ingredients,
+    steps: recipe.steps,
+    prepTime: recipe.prepTime || '',
+    servings: recipe.servings || '',
+    image: recipe.image || '',
+    category: recipe.category,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -95,7 +97,7 @@ const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
       return;
     }
 
-    const recipe: Omit<Recipe, 'id'> = {
+    const updatedRecipe: Omit<Recipe, 'id'> = {
       name: formData.name.trim(),
       ingredients: formData.ingredients.filter(ing => ing.trim()),
       steps: formData.steps.filter(step => step.trim()),
@@ -105,19 +107,7 @@ const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
       category: formData.category,
     };
 
-    onSubmit(recipe);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      ingredients: [''],
-      steps: [''],
-      prepTime: '',
-      servings: '',
-      image: '',
-      category: 'other',
-    });
-    setErrors({});
+    onSubmit(updatedRecipe);
   };
 
   return (
@@ -289,12 +279,17 @@ const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
         {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
       </div>
 
-      {/* Submit Button */}
-      <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-        Add Recipe
-      </Button>
+      {/* Action Buttons */}
+      <div className="flex gap-4">
+        <Button type="submit" className="flex-1 bg-orange-500 hover:bg-orange-600 text-white">
+          Save Changes
+        </Button>
+        <Button type="button" variant="outline" onClick={onCancel} className="flex-1">
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 };
 
-export default AddRecipeForm;
+export default EditRecipeForm;

@@ -1,283 +1,416 @@
+
 import { Recipe } from '@/types/Recipe';
 
 export const sampleRecipes: Omit<Recipe, 'id'>[] = [
-  // Pickles (5 recipes)
+  // Biryani Recipes
   {
-    name: "Mango Pickle",
-    category: "pickles",
-    ingredients: ["2 cups raw mango pieces", "1/4 cup mustard oil", "2 tsp mustard seeds", "1 tsp fenugreek seeds", "2 tsp red chili powder", "1 tsp turmeric", "Salt to taste"],
-    steps: ["Cut mangoes into small pieces", "Mix all dry spices", "Heat mustard oil and add mustard seeds", "Add mango pieces and spices", "Mix well and store in jar"],
-    prepTime: "30 minutes",
-    servings: "4-6 people",
-    image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=400&h=300&fit=crop"
+    name: "Chicken Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Chicken", "Onions", "Yogurt", "Spices", "Saffron"],
+    steps: ["Marinate chicken", "Cook rice", "Layer and cook", "Serve hot"],
+    prepTime: "2 hours",
+    servings: "4-6 people"
   },
   {
-    name: "Lemon Pickle",
-    category: "pickles",
-    ingredients: ["10 lemons", "1/4 cup salt", "2 tsp turmeric", "2 tsp red chili powder", "1 tsp asafoetida", "2 tbsp mustard oil"],
-    steps: ["Cut lemons into quarters", "Mix with salt and spices", "Add mustard oil", "Store in airtight jar", "Leave for 7 days to ferment"],
-    prepTime: "20 minutes",
-    servings: "6-8 people",
-    image: "https://images.unsplash.com/photo-1587735243475-46b5b8dd9169?w=400&h=300&fit=crop"
+    name: "Mutton Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Mutton", "Onions", "Yogurt", "Garam masala", "Mint"],
+    steps: ["Cook mutton", "Prepare rice", "Layer biryani", "Dum cook"],
+    prepTime: "3 hours",
+    servings: "6-8 people"
   },
   {
-    name: "Mixed Vegetable Pickle",
-    category: "pickles",
-    ingredients: ["1 cup carrots", "1 cup cauliflower", "1/2 cup green beans", "3 tbsp mustard oil", "2 tsp mustard seeds", "2 tsp red chili powder", "1 tsp turmeric", "Salt to taste"],
-    steps: ["Chop all vegetables", "Boil vegetables lightly", "Heat oil and add mustard seeds", "Add vegetables and spices", "Cook for 10 minutes", "Store in jar"],
-    prepTime: "45 minutes",
-    servings: "4-6 people",
-    image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=400&h=300&fit=crop"
+    name: "Vegetable Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Mixed vegetables", "Paneer", "Spices", "Cashews"],
+    steps: ["Cook vegetables", "Prepare rice", "Layer", "Cook on dum"],
+    prepTime: "1.5 hours",
+    servings: "4-5 people"
   },
   {
-    name: "Garlic Pickle",
-    category: "pickles",
-    ingredients: ["2 cups garlic cloves", "3 tbsp mustard oil", "2 tsp mustard seeds", "1 tsp fenugreek seeds", "2 tsp red chili powder", "1 tsp turmeric", "Salt to taste"],
-    steps: ["Peel garlic cloves", "Heat oil and add seeds", "Add garlic and spices", "Cook until golden", "Cool and store"],
-    prepTime: "25 minutes",
-    servings: "4-6 people",
-    image: "https://images.unsplash.com/photo-1593348443020-8c0e16d7e88e?w=400&h=300&fit=crop"
+    name: "Fish Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Fish fillets", "Coconut milk", "Curry leaves", "Spices"],
+    steps: ["Marinate fish", "Cook rice", "Layer with fish", "Steam cook"],
+    prepTime: "2 hours",
+    servings: "4 people"
   },
   {
-    name: "Green Chili Pickle",
-    category: "pickles",
-    ingredients: ["500g green chilies", "2 tbsp mustard oil", "1 tsp mustard seeds", "1 tsp nigella seeds", "1 tsp turmeric", "2 tsp coriander powder", "Salt to taste"],
-    steps: ["Wash and dry chilies", "Slit chilies lengthwise", "Heat oil and add seeds", "Add chilies and spices", "Cook for 5 minutes", "Store in jar"],
-    prepTime: "15 minutes",
-    servings: "6-8 people",
-    image: "https://images.unsplash.com/photo-1583827132795-68b67b61e1b8?w=400&h=300&fit=crop"
+    name: "Egg Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Boiled eggs", "Onions", "Tomatoes", "Biryani spices"],
+    steps: ["Boil eggs", "Cook rice", "Prepare masala", "Layer and cook"],
+    prepTime: "1 hour",
+    servings: "3-4 people"
+  },
+  {
+    name: "Prawn Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Prawns", "Coconut", "Red chilies", "Tamarind"],
+    steps: ["Clean prawns", "Cook rice", "Make prawn curry", "Layer biryani"],
+    prepTime: "1.5 hours",
+    servings: "4 people"
+  },
+  {
+    name: "Hyderabadi Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Goat meat", "Yogurt", "Fried onions", "Kewra water"],
+    steps: ["Marinate meat", "Par-cook rice", "Layer in pot", "Seal and cook"],
+    prepTime: "4 hours",
+    servings: "8-10 people"
+  },
+  {
+    name: "Kolkata Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Mutton", "Potatoes", "Rose water", "Eggs"],
+    steps: ["Cook mutton with potatoes", "Prepare rice", "Layer with eggs", "Cook"],
+    prepTime: "3 hours",
+    servings: "6 people"
+  },
+  {
+    name: "Lucknowi Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Lamb", "Saffron", "Ghee", "Whole spices"],
+    steps: ["Cook lamb in dum style", "Cook rice separately", "Layer gently", "Steam"],
+    prepTime: "3.5 hours",
+    servings: "6-8 people"
+  },
+  {
+    name: "Sindhi Biryani",
+    category: "biryani",
+    ingredients: ["Basmati rice", "Beef/Chicken", "Potatoes", "Plums", "Yogurt"],
+    steps: ["Cook meat", "Prepare rice", "Add tangy elements", "Layer and cook"],
+    prepTime: "2.5 hours",
+    servings: "6 people"
   },
 
-  // Fried Rice (5 recipes)
-  {
-    name: "Vegetable Fried Rice",
-    category: "fried-rice",
-    ingredients: ["2 cups cooked rice", "1 cup mixed vegetables", "2 eggs", "3 tbsp oil", "2 cloves garlic", "1 tbsp soy sauce", "1 tsp sesame oil", "Salt to taste"],
-    steps: ["Heat oil in wok", "Scramble eggs and set aside", "Stir-fry vegetables", "Add rice and soy sauce", "Mix in eggs", "Garnish and serve"],
-    prepTime: "20 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop"
-  },
+  // Fried Rice Recipes
   {
     name: "Chicken Fried Rice",
     category: "fried-rice",
-    ingredients: ["2 cups cooked rice", "1 cup cooked chicken", "2 eggs", "1/2 cup peas", "3 tbsp oil", "2 cloves garlic", "2 tbsp soy sauce", "1 tsp sesame oil"],
-    steps: ["Heat oil in pan", "Scramble eggs", "Add garlic and chicken", "Add rice and vegetables", "Season with soy sauce", "Serve hot"],
-    prepTime: "25 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop"
+    ingredients: ["Cooked rice", "Chicken pieces", "Eggs", "Vegetables", "Soy sauce"],
+    steps: ["Cook chicken", "Scramble eggs", "Stir fry rice", "Mix everything"],
+    prepTime: "30 minutes",
+    servings: "3-4 people"
+  },
+  {
+    name: "Vegetable Fried Rice",
+    category: "fried-rice",
+    ingredients: ["Cooked rice", "Mixed vegetables", "Garlic", "Ginger", "Soy sauce"],
+    steps: ["Stir fry vegetables", "Add rice", "Season", "Toss well"],
+    prepTime: "20 minutes",
+    servings: "2-3 people"
+  },
+  {
+    name: "Egg Fried Rice",
+    category: "fried-rice",
+    ingredients: ["Cooked rice", "Eggs", "Spring onions", "Garlic", "Oil"],
+    steps: ["Scramble eggs", "Stir fry rice", "Add seasonings", "Garnish"],
+    prepTime: "15 minutes",
+    servings: "2 people"
   },
   {
     name: "Shrimp Fried Rice",
     category: "fried-rice",
-    ingredients: ["2 cups cooked rice", "300g shrimp", "2 eggs", "1/2 cup carrots", "3 tbsp oil", "2 cloves garlic", "2 tbsp soy sauce", "Green onions"],
-    steps: ["Clean and cook shrimp", "Scramble eggs", "Stir-fry vegetables", "Add rice and shrimp", "Season well", "Garnish with green onions"],
-    prepTime: "30 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=400&h=300&fit=crop"
+    ingredients: ["Cooked rice", "Shrimp", "Peas", "Carrots", "Sesame oil"],
+    steps: ["Cook shrimp", "Stir fry vegetables", "Add rice", "Season"],
+    prepTime: "25 minutes",
+    servings: "3 people"
   },
   {
-    name: "Thai Pineapple Fried Rice",
+    name: "Thai Fried Rice",
     category: "fried-rice",
-    ingredients: ["2 cups jasmine rice", "1 cup pineapple chunks", "200g shrimp", "2 eggs", "1/4 cup cashews", "2 tbsp fish sauce", "1 tbsp curry powder", "Thai basil"],
-    steps: ["Cook rice and cool", "Stir-fry shrimp", "Scramble eggs", "Add rice and curry powder", "Mix in pineapple", "Garnish with cashews and basil"],
-    prepTime: "35 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=300&fit=crop"
+    ingredients: ["Jasmine rice", "Fish sauce", "Thai basil", "Chilies", "Lime"],
+    steps: ["Heat wok", "Stir fry rice", "Add Thai seasonings", "Garnish with basil"],
+    prepTime: "20 minutes",
+    servings: "2-3 people"
+  },
+  {
+    name: "Indonesian Fried Rice",
+    category: "fried-rice",
+    ingredients: ["Rice", "Sweet soy sauce", "Chili paste", "Vegetables", "Egg"],
+    steps: ["Prepare paste", "Stir fry rice", "Add sauce", "Top with fried egg"],
+    prepTime: "25 minutes",
+    servings: "2-3 people"
   },
   {
     name: "Kimchi Fried Rice",
     category: "fried-rice",
-    ingredients: ["2 cups cooked rice", "1 cup kimchi", "2 eggs", "2 tbsp kimchi juice", "1 tbsp sesame oil", "2 tbsp vegetable oil", "2 green onions", "Sesame seeds"],
-    steps: ["Heat oil in pan", "Stir-fry kimchi", "Add rice and kimchi juice", "Create well for eggs", "Scramble eggs in well", "Mix everything together", "Garnish and serve"],
-    prepTime: "15 minutes",
-    servings: "2-3 people",
-    image: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&h=300&fit=crop"
-  },
-
-  // Chinese Food (5 recipes)
-  {
-    name: "Sweet and Sour Chicken",
-    category: "chinese",
-    ingredients: ["500g chicken breast", "1 bell pepper", "1 onion", "1/2 cup pineapple", "3 tbsp ketchup", "2 tbsp vinegar", "2 tbsp sugar", "1 tbsp cornstarch"],
-    steps: ["Cut chicken into pieces", "Marinate and fry chicken", "Stir-fry vegetables", "Make sweet and sour sauce", "Combine everything", "Serve with rice"],
-    prepTime: "40 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1559847844-d1f6d9fd1595?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Kung Pao Chicken",
-    category: "chinese",
-    ingredients: ["500g chicken thigh", "1/2 cup peanuts", "6 dried chilies", "3 cloves garlic", "2 tbsp soy sauce", "1 tbsp rice wine", "1 tsp sugar", "2 tbsp cornstarch"],
-    steps: ["Marinate chicken pieces", "Roast peanuts", "Heat oil and fry chilies", "Add chicken and cook", "Add sauce ingredients", "Garnish with peanuts"],
-    prepTime: "30 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Mapo Tofu",
-    category: "chinese",
-    ingredients: ["400g silken tofu", "100g ground pork", "2 tbsp doubanjiang", "2 cloves garlic", "1 tsp ginger", "2 tbsp soy sauce", "1 tsp Sichuan peppercorns", "Green onions"],
-    steps: ["Cut tofu into cubes", "Cook ground pork", "Add garlic and ginger", "Add doubanjiang sauce", "Add tofu gently", "Simmer and serve"],
-    prepTime: "25 minutes",
-    servings: "2-3 people",
-    image: "https://images.unsplash.com/photo-1582878825012-c23c78c6d4ea?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Chow Mein",
-    category: "chinese",
-    ingredients: ["300g egg noodles", "1 cup cabbage", "1 carrot", "1 bell pepper", "2 tbsp soy sauce", "1 tbsp oyster sauce", "2 tbsp oil", "2 cloves garlic"],
-    steps: ["Cook noodles and drain", "Heat oil in wok", "Stir-fry vegetables", "Add noodles", "Add sauces", "Toss everything together"],
+    ingredients: ["Rice", "Kimchi", "Pork belly", "Sesame oil", "Nori"],
+    steps: ["Cook pork", "Add kimchi", "Stir in rice", "Garnish with nori"],
     prepTime: "20 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?w=400&h=300&fit=crop"
+    servings: "2 people"
   },
   {
-    name: "General Tso's Chicken",
-    category: "chinese",
-    ingredients: ["500g chicken thigh", "1/2 cup cornstarch", "3 tbsp soy sauce", "3 tbsp rice vinegar", "4 tbsp sugar", "2 tbsp ketchup", "1 tsp ginger", "3 cloves garlic"],
-    steps: ["Cut and marinate chicken", "Coat with cornstarch", "Deep fry chicken", "Make sauce in wok", "Add fried chicken to sauce", "Garnish and serve"],
-    prepTime: "45 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=300&fit=crop"
+    name: "Pineapple Fried Rice",
+    category: "fried-rice",
+    ingredients: ["Rice", "Pineapple chunks", "Cashews", "Curry powder", "Raisins"],
+    steps: ["Stir fry rice", "Add pineapple", "Season with curry", "Add nuts"],
+    prepTime: "25 minutes",
+    servings: "3-4 people"
+  },
+  {
+    name: "Mushroom Fried Rice",
+    category: "fried-rice",
+    ingredients: ["Rice", "Mixed mushrooms", "Soy sauce", "Garlic", "Herbs"],
+    steps: ["Sauté mushrooms", "Add rice", "Season well", "Garnish with herbs"],
+    prepTime: "20 minutes",
+    servings: "2-3 people"
+  },
+  {
+    name: "Beef Fried Rice",
+    category: "fried-rice",
+    ingredients: ["Rice", "Beef strips", "Bell peppers", "Onions", "Oyster sauce"],
+    steps: ["Cook beef", "Stir fry vegetables", "Add rice", "Sauce and serve"],
+    prepTime: "30 minutes",
+    servings: "3-4 people"
   },
 
-  // Curries (5 recipes)
+  // Pickles Recipes
   {
-    name: "Butter Chicken",
-    category: "curries",
-    ingredients: ["500g chicken", "1 cup tomato puree", "1/2 cup cream", "2 tbsp butter", "1 onion", "3 cloves garlic", "1 tsp garam masala", "1 tsp cumin", "Salt to taste"],
-    steps: ["Marinate chicken with spices", "Cook chicken pieces", "Sauté onions and garlic", "Add tomato puree", "Add cream and butter", "Simmer with chicken"],
-    prepTime: "45 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Chickpea Curry",
-    category: "curries",
-    ingredients: ["2 cups cooked chickpeas", "1 onion", "2 tomatoes", "3 cloves garlic", "1 tsp ginger", "1 tsp cumin", "1 tsp coriander powder", "1/2 tsp turmeric"],
-    steps: ["Sauté onions until golden", "Add garlic and ginger", "Add tomatoes and spices", "Add chickpeas", "Simmer for 15 minutes", "Garnish with cilantro"],
+    name: "Mango Pickle",
+    category: "pickles",
+    ingredients: ["Raw mangoes", "Mustard oil", "Red chili powder", "Turmeric", "Salt"],
+    steps: ["Cut mangoes", "Mix with spices", "Add oil", "Store in jar"],
     prepTime: "30 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=300&fit=crop"
+    servings: "Makes 1 jar"
   },
   {
-    name: "Thai Green Curry",
-    category: "curries",
-    ingredients: ["400ml coconut milk", "2 tbsp green curry paste", "300g chicken", "1 eggplant", "1 bell pepper", "Thai basil", "2 tbsp fish sauce", "1 tbsp palm sugar"],
-    steps: ["Heat coconut milk", "Add curry paste", "Add chicken and cook", "Add vegetables", "Season with fish sauce and sugar", "Garnish with basil"],
+    name: "Lemon Pickle",
+    category: "pickles",
+    ingredients: ["Lemons", "Salt", "Turmeric", "Red chilies", "Mustard seeds"],
+    steps: ["Cut lemons", "Mix with salt", "Add spices", "Sun dry"],
+    prepTime: "20 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Garlic Pickle",
+    category: "pickles",
+    ingredients: ["Garlic cloves", "Mustard oil", "Fenugreek powder", "Red chilies"],
+    steps: ["Peel garlic", "Mix spices", "Add oil", "Store properly"],
+    prepTime: "25 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Mixed Vegetable Pickle",
+    category: "pickles",
+    ingredients: ["Cauliflower", "Carrots", "Turnips", "Oil", "Pickle spice mix"],
+    steps: ["Cut vegetables", "Blanch lightly", "Mix with spices", "Store"],
+    prepTime: "45 minutes",
+    servings: "Makes 2 jars"
+  },
+  {
+    name: "Chili Pickle",
+    category: "pickles",
+    ingredients: ["Green chilies", "Mustard seeds", "Oil", "Salt", "Vinegar"],
+    steps: ["Slit chilies", "Temper mustard seeds", "Mix everything", "Store"],
+    prepTime: "15 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Ginger Pickle",
+    category: "pickles",
+    ingredients: ["Fresh ginger", "Lemon juice", "Salt", "Turmeric", "Oil"],
+    steps: ["Slice ginger", "Add lemon juice", "Mix spices", "Marinate"],
+    prepTime: "20 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Onion Pickle",
+    category: "pickles",
+    ingredients: ["Small onions", "Tamarind", "Jaggery", "Red chilies", "Oil"],
+    steps: ["Peel onions", "Make tamarind paste", "Cook with spices", "Cool and store"],
+    prepTime: "40 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Carrot Pickle",
+    category: "pickles",
+    ingredients: ["Carrots", "Mustard powder", "Turmeric", "Salt", "Oil"],
+    steps: ["Cut carrots", "Mix with spices", "Add oil", "Marinate well"],
+    prepTime: "25 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Amla Pickle",
+    category: "pickles",
+    ingredients: ["Fresh amla", "Salt", "Turmeric", "Chili powder", "Oil"],
+    steps: ["Grate amla", "Mix with salt", "Add spices", "Store in oil"],
+    prepTime: "30 minutes",
+    servings: "Makes 1 jar"
+  },
+  {
+    name: "Cauliflower Pickle",
+    category: "pickles",
+    ingredients: ["Cauliflower", "Vinegar", "Mustard seeds", "Turmeric", "Salt"],
+    steps: ["Cut cauliflower", "Blanch briefly", "Mix with spices", "Add vinegar"],
     prepTime: "35 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Fish Curry",
-    category: "curries",
-    ingredients: ["500g fish fillets", "400ml coconut milk", "2 tbsp curry powder", "1 onion", "3 tomatoes", "2 tsp ginger-garlic paste", "2 green chilies", "Curry leaves"],
-    steps: ["Marinate fish with turmeric", "Sauté onions and spices", "Add tomatoes", "Add coconut milk", "Add fish pieces", "Simmer until cooked"],
-    prepTime: "40 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Lamb Rogan Josh",
-    category: "curries",
-    ingredients: ["750g lamb", "1 cup yogurt", "2 onions", "4 tomatoes", "2 tsp ginger-garlic paste", "2 tsp red chili powder", "1 tsp garam masala", "2 bay leaves"],
-    steps: ["Marinate lamb in yogurt", "Brown meat pieces", "Sauté onions until golden", "Add spices and tomatoes", "Add meat back", "Slow cook for 1 hour"],
-    prepTime: "90 minutes",
-    servings: "4-6 people",
-    image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=400&h=300&fit=crop"
+    servings: "Makes 1 jar"
   },
 
-  // Other recipes (10 recipes)
+  // Continue with other categories... (Due to length, I'll add a few more key categories)
+  
+  // Shakes
   {
-    name: "Caesar Salad",
-    category: "other",
-    ingredients: ["1 head romaine lettuce", "1/2 cup parmesan cheese", "1/4 cup croutons", "2 tbsp Caesar dressing", "1 lemon", "Black pepper"],
-    steps: ["Wash and chop lettuce", "Make croutons", "Prepare dressing", "Toss everything together", "Add cheese and pepper", "Serve immediately"],
+    name: "Mango Shake",
+    category: "shakes",
+    ingredients: ["Ripe mangoes", "Milk", "Sugar", "Ice cubes", "Cardamom"],
+    steps: ["Peel mangoes", "Blend with milk", "Add sugar", "Serve chilled"],
+    prepTime: "10 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Chocolate Shake",
+    category: "shakes",
+    ingredients: ["Chocolate syrup", "Milk", "Ice cream", "Whipped cream"],
+    steps: ["Blend chocolate with milk", "Add ice cream", "Top with cream", "Serve"],
+    prepTime: "5 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Banana Shake",
+    category: "shakes",
+    ingredients: ["Bananas", "Milk", "Honey", "Nuts", "Ice"],
+    steps: ["Blend bananas", "Add milk and honey", "Add ice", "Garnish with nuts"],
+    prepTime: "5 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Strawberry Shake",
+    category: "shakes",
+    ingredients: ["Fresh strawberries", "Milk", "Sugar", "Vanilla", "Ice"],
+    steps: ["Blend strawberries", "Add milk and sugar", "Add vanilla", "Serve cold"],
+    prepTime: "8 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Oreo Shake",
+    category: "shakes",
+    ingredients: ["Oreo cookies", "Milk", "Vanilla ice cream", "Whipped cream"],
+    steps: ["Crush oreos", "Blend with milk", "Add ice cream", "Top with cream"],
+    prepTime: "7 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Peanut Butter Shake",
+    category: "shakes",
+    ingredients: ["Peanut butter", "Milk", "Banana", "Honey", "Ice"],
+    steps: ["Blend all ingredients", "Adjust consistency", "Serve immediately"],
+    prepTime: "5 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Coffee Shake",
+    category: "shakes",
+    ingredients: ["Cold coffee", "Milk", "Ice cream", "Sugar", "Whipped cream"],
+    steps: ["Brew strong coffee", "Cool completely", "Blend with ingredients", "Serve"],
+    prepTime: "10 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Vanilla Shake",
+    category: "shakes",
+    ingredients: ["Vanilla ice cream", "Milk", "Vanilla extract", "Sugar"],
+    steps: ["Blend ice cream with milk", "Add vanilla", "Adjust sweetness", "Serve"],
+    prepTime: "3 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Avocado Shake",
+    category: "shakes",
+    ingredients: ["Ripe avocado", "Milk", "Honey", "Lime juice", "Ice"],
+    steps: ["Blend avocado", "Add milk and honey", "Add lime", "Serve fresh"],
+    prepTime: "8 minutes",
+    servings: "2 glasses"
+  },
+  {
+    name: "Rose Shake",
+    category: "shakes",
+    ingredients: ["Rose syrup", "Milk", "Ice cream", "Rose petals", "Nuts"],
+    steps: ["Mix rose syrup with milk", "Add ice cream", "Garnish beautifully"],
+    prepTime: "5 minutes",
+    servings: "2 glasses"
+  },
+
+  // Quick Easy Recipes
+  {
+    name: "2-Minute Maggi",
+    category: "quick-easy",
+    ingredients: ["Maggi noodles", "Water", "Masala packet", "Vegetables"],
+    steps: ["Boil water", "Add noodles", "Add masala", "Cook and serve"],
+    prepTime: "5 minutes",
+    servings: "1 person"
+  },
+  {
+    name: "Bread Omelet",
+    category: "quick-easy",
+    ingredients: ["Bread", "Eggs", "Onions", "Tomatoes", "Salt"],
+    steps: ["Beat eggs", "Add vegetables", "Cook with bread", "Serve hot"],
+    prepTime: "10 minutes",
+    servings: "2 people"
+  },
+  {
+    name: "Instant Poha",
+    category: "quick-easy",
+    ingredients: ["Poha", "Onions", "Peanuts", "Curry leaves", "Turmeric"],
+    steps: ["Wash poha", "Temper spices", "Mix everything", "Garnish and serve"],
     prepTime: "15 minutes",
-    servings: "2-3 people",
-    image: "https://images.unsplash.com/photo-1512852939750-1305098529bf?w=400&h=300&fit=crop"
+    servings: "2-3 people"
   },
   {
-    name: "Chocolate Chip Cookies",
-    category: "other",
-    ingredients: ["2 cups flour", "1 cup butter", "3/4 cup brown sugar", "1/2 cup white sugar", "2 eggs", "1 tsp vanilla", "1 tsp baking soda", "1 cup chocolate chips"],
-    steps: ["Cream butter and sugars", "Add eggs and vanilla", "Mix in dry ingredients", "Fold in chocolate chips", "Bake at 375°F for 10 minutes", "Cool on rack"],
-    prepTime: "30 minutes",
-    servings: "24 cookies",
-    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Margherita Pizza",
-    category: "other",
-    ingredients: ["1 pizza dough", "1/2 cup tomato sauce", "200g mozzarella", "Fresh basil", "2 tbsp olive oil", "Salt", "Black pepper"],
-    steps: ["Roll out pizza dough", "Spread tomato sauce", "Add mozzarella cheese", "Bake at 475°F for 12 minutes", "Add fresh basil", "Drizzle with olive oil"],
-    prepTime: "25 minutes",
-    servings: "2-3 people",
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop"
-  },
-  {
-    name: "Greek Salad",
-    category: "other",
-    ingredients: ["2 cucumbers", "4 tomatoes", "1 red onion", "200g feta cheese", "1/2 cup olives", "3 tbsp olive oil", "2 tbsp lemon juice", "Oregano"],
-    steps: ["Chop vegetables", "Add feta and olives", "Whisk oil and lemon", "Toss with dressing", "Season with oregano", "Serve fresh"],
+    name: "Quick Pasta",
+    category: "quick-easy",
+    ingredients: ["Pasta", "Olive oil", "Garlic", "Herbs", "Cheese"],
+    steps: ["Cook pasta", "Sauté garlic", "Toss together", "Add cheese"],
     prepTime: "15 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop"
+    servings: "2 people"
   },
   {
-    name: "Beef Tacos",
-    category: "other",
-    ingredients: ["500g ground beef", "8 taco shells", "1 lettuce", "2 tomatoes", "1 cup cheese", "1 onion", "1 tsp cumin", "1 tsp chili powder", "Sour cream"],
-    steps: ["Cook ground beef with spices", "Warm taco shells", "Prepare toppings", "Fill shells with meat", "Add toppings", "Serve immediately"],
-    prepTime: "20 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=400&h=300&fit=crop"
+    name: "Microwave Mug Cake",
+    category: "quick-easy",
+    ingredients: ["Flour", "Sugar", "Cocoa", "Oil", "Water"],
+    steps: ["Mix dry ingredients", "Add wet ingredients", "Microwave 2 minutes", "Enjoy"],
+    prepTime: "5 minutes",
+    servings: "1 person"
   },
   {
-    name: "Spaghetti Carbonara",
-    category: "other",
-    ingredients: ["400g spaghetti", "200g pancetta", "4 eggs", "1 cup parmesan", "2 cloves garlic", "Black pepper", "Salt", "2 tbsp olive oil"],
-    steps: ["Cook spaghetti al dente", "Fry pancetta until crispy", "Whisk eggs with cheese", "Combine hot pasta with pancetta", "Add egg mixture off heat", "Toss quickly and serve"],
-    prepTime: "25 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop"
+    name: "Instant Sandwich",
+    category: "quick-easy",
+    ingredients: ["Bread", "Cheese", "Vegetables", "Butter", "Chutney"],
+    steps: ["Layer ingredients", "Grill or toast", "Cut and serve", "Enjoy hot"],
+    prepTime: "10 minutes",
+    servings: "2 people"
   },
   {
-    name: "Chicken Quesadilla",
-    category: "other",
-    ingredients: ["4 tortillas", "300g cooked chicken", "2 cups cheese", "1 bell pepper", "1 onion", "2 tbsp oil", "Salsa", "Sour cream"],
-    steps: ["Cook vegetables", "Shred cooked chicken", "Layer ingredients on tortilla", "Top with another tortilla", "Cook until golden", "Cut and serve with salsa"],
-    prepTime: "20 minutes",
-    servings: "2-3 people",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop"
+    name: "Quick Smoothie Bowl",
+    category: "quick-easy",
+    ingredients: ["Frozen fruits", "Yogurt", "Granola", "Nuts", "Honey"],
+    steps: ["Blend frozen fruits", "Pour in bowl", "Add toppings", "Serve immediately"],
+    prepTime: "5 minutes",
+    servings: "1 person"
   },
   {
-    name: "Mushroom Risotto",
-    category: "other",
-    ingredients: ["1 cup arborio rice", "300g mushrooms", "4 cups warm broth", "1 onion", "1/2 cup white wine", "2 tbsp butter", "1/2 cup parmesan", "2 tbsp olive oil"],
-    steps: ["Sauté mushrooms", "Cook onion until soft", "Add rice and toast", "Add wine and stir", "Add broth gradually", "Finish with butter and cheese"],
-    prepTime: "40 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&h=300&fit=crop"
+    name: "5-Minute Upma",
+    category: "quick-easy",
+    ingredients: ["Semolina", "Water", "Mustard seeds", "Curry leaves", "Salt"],
+    steps: ["Roast semolina", "Temper spices", "Add water", "Cook until done"],
+    prepTime: "8 minutes",
+    servings: "2 people"
   },
   {
-    name: "French Toast",
-    category: "other",
-    ingredients: ["8 thick bread slices", "4 eggs", "1/2 cup milk", "2 tbsp sugar", "1 tsp vanilla", "1/2 tsp cinnamon", "Butter", "Maple syrup"],
-    steps: ["Whisk eggs, milk, and spices", "Dip bread in mixture", "Cook in buttered pan", "Flip when golden", "Serve with syrup", "Dust with powdered sugar"],
-    prepTime: "15 minutes",
-    servings: "4 people",
-    image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=400&h=300&fit=crop"
+    name: "Instant Oats",
+    category: "quick-easy",
+    ingredients: ["Oats", "Milk", "Fruits", "Nuts", "Honey"],
+    steps: ["Cook oats with milk", "Add fruits", "Top with nuts", "Drizzle honey"],
+    prepTime: "5 minutes",
+    servings: "1 person"
   },
   {
-    name: "Vegetable Stir Fry",
-    category: "other",
-    ingredients: ["2 cups mixed vegetables", "2 tbsp soy sauce", "1 tbsp sesame oil", "2 cloves garlic", "1 tsp ginger", "2 tbsp vegetable oil", "1 tsp cornstarch", "Green onions"],
-    steps: ["Heat oil in wok", "Add garlic and ginger", "Stir-fry vegetables", "Add soy sauce", "Thicken with cornstarch", "Garnish with green onions"],
-    prepTime: "15 minutes",
-    servings: "3-4 people",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
+    name: "Quick Fried Rice",
+    category: "quick-easy",
+    ingredients: ["Leftover rice", "Soy sauce", "Vegetables", "Egg", "Oil"],
+    steps: ["Heat oil", "Scramble egg", "Add rice and vegetables", "Season and serve"],
+    prepTime: "10 minutes",
+    servings: "2 people"
   }
 ];

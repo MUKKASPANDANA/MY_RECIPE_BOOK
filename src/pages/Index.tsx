@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Book, ChefHat, Edit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -92,10 +91,42 @@ const Index = () => {
 
   const categories = [
     { id: 'all', label: 'All Recipes', count: recipes.length },
-    { id: 'pickles', label: 'Pickles', count: recipes.filter(r => r.category === 'pickles').length },
+    { id: 'biryani', label: 'Biryani', count: recipes.filter(r => r.category === 'biryani').length },
     { id: 'fried-rice', label: 'Fried Rice', count: recipes.filter(r => r.category === 'fried-rice').length },
-    { id: 'chinese', label: 'Chinese Food', count: recipes.filter(r => r.category === 'chinese').length },
+    { id: 'pickles', label: 'Pickles', count: recipes.filter(r => r.category === 'pickles').length },
+    { id: 'shakes', label: 'Shakes', count: recipes.filter(r => r.category === 'shakes').length },
+    { id: 'soups', label: 'Soups', count: recipes.filter(r => r.category === 'soups').length },
+    { id: 'salads', label: 'Salads', count: recipes.filter(r => r.category === 'salads').length },
+    { id: 'detox-water', label: 'Detox Water', count: recipes.filter(r => r.category === 'detox-water').length },
     { id: 'curries', label: 'Curries', count: recipes.filter(r => r.category === 'curries').length },
+    { id: 'non-veg-curries', label: 'Non-Veg Curries', count: recipes.filter(r => r.category === 'non-veg-curries').length },
+    { id: 'snacks', label: 'Snacks', count: recipes.filter(r => r.category === 'snacks').length },
+    { id: 'juices', label: 'Juices', count: recipes.filter(r => r.category === 'juices').length },
+    { id: 'desserts-sweets', label: 'Desserts & Sweets', count: recipes.filter(r => r.category === 'desserts-sweets').length },
+    { id: 'breakfast', label: 'Breakfast', count: recipes.filter(r => r.category === 'breakfast').length },
+    { id: 'street-food', label: 'Street Food', count: recipes.filter(r => r.category === 'street-food').length },
+    { id: 'south-indian', label: 'South Indian', count: recipes.filter(r => r.category === 'south-indian').length },
+    { id: 'north-indian', label: 'North Indian', count: recipes.filter(r => r.category === 'north-indian').length },
+    { id: 'chinese', label: 'Chinese', count: recipes.filter(r => r.category === 'chinese').length },
+    { id: 'italian', label: 'Italian', count: recipes.filter(r => r.category === 'italian').length },
+    { id: 'mexican', label: 'Mexican', count: recipes.filter(r => r.category === 'mexican').length },
+    { id: 'rice-varieties', label: 'Rice Varieties', count: recipes.filter(r => r.category === 'rice-varieties').length },
+    { id: 'roti-paratha', label: 'Roti & Paratha', count: recipes.filter(r => r.category === 'roti-paratha').length },
+    { id: 'gravy-dishes', label: 'Gravy Dishes', count: recipes.filter(r => r.category === 'gravy-dishes').length },
+    { id: 'tandoori', label: 'Tandoori', count: recipes.filter(r => r.category === 'tandoori').length },
+    { id: 'stir-fry', label: 'Stir Fry', count: recipes.filter(r => r.category === 'stir-fry').length },
+    { id: 'healthy-low-cal', label: 'Healthy/Low-Cal', count: recipes.filter(r => r.category === 'healthy-low-cal').length },
+    { id: 'festive-specials', label: 'Festive Specials', count: recipes.filter(r => r.category === 'festive-specials').length },
+    { id: 'one-pot-meals', label: 'One-Pot Meals', count: recipes.filter(r => r.category === 'one-pot-meals').length },
+    { id: 'baking-cakes', label: 'Baking & Cakes', count: recipes.filter(r => r.category === 'baking-cakes').length },
+    { id: 'ice-creams', label: 'Ice Creams', count: recipes.filter(r => r.category === 'ice-creams').length },
+    { id: 'sandwiches-wraps', label: 'Sandwiches & Wraps', count: recipes.filter(r => r.category === 'sandwiches-wraps').length },
+    { id: 'dips-chutneys', label: 'Dips & Chutneys', count: recipes.filter(r => r.category === 'dips-chutneys').length },
+    { id: 'beverages-mocktails', label: 'Beverages & Mocktails', count: recipes.filter(r => r.category === 'beverages-mocktails').length },
+    { id: 'kids-special', label: 'Kids Special', count: recipes.filter(r => r.category === 'kids-special').length },
+    { id: 'party-starters', label: 'Party Starters', count: recipes.filter(r => r.category === 'party-starters').length },
+    { id: 'quick-easy', label: 'Quick & Easy', count: recipes.filter(r => r.category === 'quick-easy').length },
+    { id: 'lunch-box', label: 'Lunch Box', count: recipes.filter(r => r.category === 'lunch-box').length },
     { id: 'other', label: 'Other', count: recipes.filter(r => r.category === 'other').length },
   ];
 
@@ -153,77 +184,83 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Category Tabs */}
-        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-8">
-          <TabsList className="grid w-full grid-cols-6 bg-white border border-orange-200">
-            {categories.map((category) => (
-              <TabsTrigger 
-                key={category.id} 
-                value={category.id}
-                className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
-              >
-                {category.label} ({category.count})
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {categories.map((category) => (
-            <TabsContent key={category.id} value={category.id}>
-              <div className="mb-6 text-center">
-                <p className="text-gray-600">
-                  {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
-                  {category.id !== 'all' && ` in ${category.label}`}
-                </p>
-              </div>
-
-              {/* Recipes Grid */}
-              {filteredRecipes.length === 0 ? (
-                <div className="text-center py-12">
-                  <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
-                    <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
-                    </h3>
-                    <p className="text-gray-600 mb-4">
-                      {recipes.length === 0 
-                        ? 'Start building your recipe collection by adding your first recipe!'
-                        : 'Try adjusting your search terms or category to find what you\'re looking for.'
-                      }
-                    </p>
-                    {recipes.length === 0 && (
-                      <Button 
-                        onClick={() => setIsAddDialogOpen(true)}
-                        className="bg-orange-500 hover:bg-orange-600 text-white"
-                      >
-                        <Plus className="h-4 w-4 mr-2" />
-                        Add Your First Recipe
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredRecipes.map((recipe) => (
-                    <div key={recipe.id} className="relative group">
-                      <RecipeCard
-                        recipe={recipe}
-                        onClick={() => setSelectedRecipe(recipe)}
-                      />
-                      <Button
-                        onClick={() => handleEdit(recipe)}
-                        size="sm"
-                        variant="outline"
-                        className="absolute top-2 right-2 bg-white/90 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                    </div>
+        {/* Category Tabs - Updated to handle scrolling for many categories */}
+        <div className="mb-8">
+          <div className="overflow-x-auto">
+            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
+              <TabsList className="inline-flex h-auto p-1 bg-white border border-orange-200 rounded-lg min-w-full">
+                <div className="flex flex-wrap gap-1">
+                  {categories.map((category) => (
+                    <TabsTrigger 
+                      key={category.id} 
+                      value={category.id}
+                      className="data-[state=active]:bg-orange-500 data-[state=active]:text-white whitespace-nowrap text-xs px-2 py-1"
+                    >
+                      {category.label} ({category.count})
+                    </TabsTrigger>
                   ))}
                 </div>
-              )}
-            </TabsContent>
-          ))}
-        </Tabs>
+              </TabsList>
+
+              {categories.map((category) => (
+                <TabsContent key={category.id} value={category.id}>
+                  <div className="mb-6 text-center">
+                    <p className="text-gray-600">
+                      {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
+                      {category.id !== 'all' && ` in ${category.label}`}
+                    </p>
+                  </div>
+
+                  {/* Recipes Grid */}
+                  {filteredRecipes.length === 0 ? (
+                    <div className="text-center py-12">
+                      <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
+                        <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                          {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
+                        </h3>
+                        <p className="text-gray-600 mb-4">
+                          {recipes.length === 0 
+                            ? 'Start building your recipe collection by adding your first recipe!'
+                            : 'Try adjusting your search terms or category to find what you\'re looking for.'
+                          }
+                        </p>
+                        {recipes.length === 0 && (
+                          <Button 
+                            onClick={() => setIsAddDialogOpen(true)}
+                            className="bg-orange-500 hover:bg-orange-600 text-white"
+                          >
+                            <Plus className="h-4 w-4 mr-2" />
+                            Add Your First Recipe
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {filteredRecipes.map((recipe) => (
+                        <div key={recipe.id} className="relative group">
+                          <RecipeCard
+                            recipe={recipe}
+                            onClick={() => setSelectedRecipe(recipe)}
+                          />
+                          <Button
+                            onClick={() => handleEdit(recipe)}
+                            size="sm"
+                            variant="outline"
+                            className="absolute top-2 right-2 bg-white/90 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <Edit className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
+        </div>
       </main>
 
       {/* Recipe Detail Modal */}

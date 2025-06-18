@@ -1,92 +1,31 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent } from '@/components/ui/card';
-import { Plus, Minus, Upload } from 'lucide-react';
 import { Recipe } from '@/types/Recipe';
+import { useRecipeForm } from '@/hooks/useRecipeForm';
+import ImageUploadField from '@/components/form/ImageUploadField';
+import ArrayField from '@/components/form/ArrayField';
+import CategorySelect from '@/components/form/CategorySelect';
 
 interface AddRecipeFormProps {
   onSubmit: (recipe: Omit<Recipe, 'id'>) => void;
 }
 
 const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    ingredients: [''],
-    steps: [''],
-    prepTime: '',
-    servings: '',
-    image: '',
-    category: 'other' as Recipe['category'],
-  });
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
-  const handleInputChange = (field: string, value: string | Recipe['category']) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: '' }));
-    }
-  };
-
-  const handleArrayChange = (field: 'ingredients' | 'steps', index: number, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: prev[field].map((item, i) => i === index ? value : item)
-    }));
-  };
-
-  const addArrayItem = (field: 'ingredients' | 'steps') => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: [...prev[field], '']
-    }));
-  };
-
-  const removeArrayItem = (field: 'ingredients' | 'steps', index: number) => {
-    if (formData[field].length > 1) {
-      setFormData(prev => ({
-        ...prev,
-        [field]: prev[field].filter((_, i) => i !== index)
-      }));
-    }
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const result = e.target?.result as string;
-        setFormData(prev => ({ ...prev, image: result }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Recipe name is required';
-    }
-
-    const validIngredients = formData.ingredients.filter(ing => ing.trim());
-    if (validIngredients.length === 0) {
-      newErrors.ingredients = 'At least one ingredient is required';
-    }
-
-    const validSteps = formData.steps.filter(step => step.trim());
-    if (validSteps.length === 0) {
-      newErrors.steps = 'At least one preparation step is required';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  const {
+    formData,
+    errors,
+    handleInputChange,
+    handleArrayChange,
+    addArrayItem,
+    removeArrayItem,
+    handleImageUpload,
+    validateForm,
+    resetForm,
+    getCleanedFormData,
+  } = useRecipeForm();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,29 +34,9 @@ const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
       return;
     }
 
-    const recipe: Omit<Recipe, 'id'> = {
-      name: formData.name.trim(),
-      ingredients: formData.ingredients.filter(ing => ing.trim()),
-      steps: formData.steps.filter(step => step.trim()),
-      prepTime: formData.prepTime.trim() || undefined,
-      servings: formData.servings.trim() || undefined,
-      image: formData.image || undefined,
-      category: formData.category,
-    };
-
+    const recipe = getCleanedFormData();
     onSubmit(recipe);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      ingredients: [''],
-      steps: [''],
-      prepTime: '',
-      servings: '',
-      image: '',
-      category: 'other',
-    });
-    setErrors({});
+    resetForm();
   };
 
   return (
@@ -137,56 +56,10 @@ const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
       </div>
 
       {/* Category Selection */}
-      <div>
-        <Label htmlFor="category">Category *</Label>
-        <Select 
-          value={formData.category} 
-          onValueChange={(value: Recipe['category']) => handleInputChange('category', value)}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Select a category" />
-          </SelectTrigger>
-          <SelectContent className="max-h-60 overflow-y-auto">
-            <SelectItem value="biryani">Biryani</SelectItem>
-            <SelectItem value="fried-rice">Fried Rice</SelectItem>
-            <SelectItem value="pickles">Pickles</SelectItem>
-            <SelectItem value="shakes">Shakes</SelectItem>
-            <SelectItem value="soups">Soups</SelectItem>
-            <SelectItem value="salads">Salads</SelectItem>
-            <SelectItem value="detox-water">Detox Water</SelectItem>
-            <SelectItem value="curries">Curries</SelectItem>
-            <SelectItem value="non-veg-curries">Non-Veg Curries</SelectItem>
-            <SelectItem value="snacks">Snacks</SelectItem>
-            <SelectItem value="juices">Juices</SelectItem>
-            <SelectItem value="desserts-sweets">Desserts & Sweets</SelectItem>
-            <SelectItem value="breakfast">Breakfast Dishes</SelectItem>
-            <SelectItem value="street-food">Street Food</SelectItem>
-            <SelectItem value="south-indian">South Indian</SelectItem>
-            <SelectItem value="north-indian">North Indian</SelectItem>
-            <SelectItem value="chinese">Chinese / Indo-Chinese</SelectItem>
-            <SelectItem value="italian">Italian</SelectItem>
-            <SelectItem value="mexican">Mexican</SelectItem>
-            <SelectItem value="rice-varieties">Rice Varieties</SelectItem>
-            <SelectItem value="roti-paratha">Roti & Paratha</SelectItem>
-            <SelectItem value="gravy-dishes">Gravy Dishes</SelectItem>
-            <SelectItem value="tandoori">Tandoori Items</SelectItem>
-            <SelectItem value="stir-fry">Stir Fry</SelectItem>
-            <SelectItem value="healthy-low-cal">Healthy/Low-Calorie</SelectItem>
-            <SelectItem value="festive-specials">Festive Specials</SelectItem>
-            <SelectItem value="one-pot-meals">One-Pot Meals</SelectItem>
-            <SelectItem value="baking-cakes">Baking & Cakes</SelectItem>
-            <SelectItem value="ice-creams">Ice Creams & Chilled Desserts</SelectItem>
-            <SelectItem value="sandwiches-wraps">Sandwiches & Wraps</SelectItem>
-            <SelectItem value="dips-chutneys">Dips & Chutneys</SelectItem>
-            <SelectItem value="beverages-mocktails">Beverages & Mocktails</SelectItem>
-            <SelectItem value="kids-special">Kids Special</SelectItem>
-            <SelectItem value="party-starters">Party Starters</SelectItem>
-            <SelectItem value="quick-easy">Quick & Easy</SelectItem>
-            <SelectItem value="lunch-box">Lunch Box Ideas</SelectItem>
-            <SelectItem value="other">Other</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+      <CategorySelect
+        value={formData.category}
+        onValueChange={(value: Recipe['category']) => handleInputChange('category', value)}
+      />
 
       {/* Prep Time and Servings */}
       <div className="grid grid-cols-2 gap-4">
@@ -213,113 +86,33 @@ const AddRecipeForm: React.FC<AddRecipeFormProps> = ({ onSubmit }) => {
       </div>
 
       {/* Image Upload */}
-      <div>
-        <Label htmlFor="image">Recipe Image</Label>
-        <div className="mt-2">
-          <label htmlFor="imageInput" className="cursor-pointer">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-orange-400 transition-colors">
-              {formData.image ? (
-                <div className="space-y-2">
-                  <img
-                    src={formData.image}
-                    alt="Recipe preview"
-                    className="max-h-32 mx-auto rounded-lg"
-                  />
-                  <p className="text-sm text-gray-600">Click to change image</p>
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <Upload className="h-8 w-8 text-gray-400 mx-auto" />
-                  <p className="text-sm text-gray-600">Click to upload an image</p>
-                </div>
-              )}
-            </div>
-          </label>
-          <input
-            id="imageInput"
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="hidden"
-          />
-        </div>
-      </div>
+      <ImageUploadField
+        image={formData.image}
+        onImageUpload={handleImageUpload}
+      />
 
       {/* Ingredients */}
-      <div>
-        <Label>Ingredients *</Label>
-        <div className="space-y-2 mt-2">
-          {formData.ingredients.map((ingredient, index) => (
-            <div key={index} className="flex gap-2">
-              <Input
-                value={ingredient}
-                onChange={(e) => handleArrayChange('ingredients', index, e.target.value)}
-                placeholder={`Ingredient ${index + 1}`}
-                className="flex-1"
-              />
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => removeArrayItem('ingredients', index)}
-                disabled={formData.ingredients.length === 1}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-            </div>
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => addArrayItem('ingredients')}
-            className="w-full"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Add Ingredient
-          </Button>
-        </div>
-        {errors.ingredients && <p className="text-red-500 text-sm mt-1">{errors.ingredients}</p>}
-      </div>
+      <ArrayField
+        label="Ingredients"
+        items={formData.ingredients}
+        onItemChange={(index, value) => handleArrayChange('ingredients', index, value)}
+        onAddItem={() => addArrayItem('ingredients')}
+        onRemoveItem={(index) => removeArrayItem('ingredients', index)}
+        placeholder="Ingredient"
+        error={errors.ingredients}
+      />
 
       {/* Preparation Steps */}
-      <div>
-        <Label>Preparation Steps *</Label>
-        <div className="space-y-2 mt-2">
-          {formData.steps.map((step, index) => (
-            <div key={index} className="flex gap-2">
-              <div className="flex-1">
-                <Textarea
-                  value={step}
-                  onChange={(e) => handleArrayChange('steps', index, e.target.value)}
-                  placeholder={`Step ${index + 1}`}
-                  rows={2}
-                />
-              </div>
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                onClick={() => removeArrayItem('steps', index)}
-                disabled={formData.steps.length === 1}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-            </div>
-          ))}
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => addArrayItem('steps')}
-            className="w-full"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            Add Step
-          </Button>
-        </div>
-        {errors.steps && <p className="text-red-500 text-sm mt-1">{errors.steps}</p>}
-      </div>
+      <ArrayField
+        label="Preparation Steps"
+        items={formData.steps}
+        onItemChange={(index, value) => handleArrayChange('steps', index, value)}
+        onAddItem={() => addArrayItem('steps')}
+        onRemoveItem={(index) => removeArrayItem('steps', index)}
+        placeholder="Step"
+        useTextarea={true}
+        error={errors.steps}
+      />
 
       {/* Submit Button */}
       <Button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white">

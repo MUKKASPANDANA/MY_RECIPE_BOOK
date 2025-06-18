@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import RecipeHeader from '@/components/RecipeHeader';
@@ -7,6 +6,7 @@ import RecipeTabs from '@/components/RecipeTabs';
 import EditRecipeForm from '@/components/EditRecipeForm';
 import RecipeDetailModal from '@/components/RecipeDetailModal';
 import { useRecipes } from '@/hooks/useRecipes';
+import { Recipe } from '@/types/Recipe';
 
 const Index = () => {
   const {

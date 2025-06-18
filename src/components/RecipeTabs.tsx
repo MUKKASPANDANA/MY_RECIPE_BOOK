@@ -27,26 +27,51 @@ const RecipeTabs: React.FC<RecipeTabsProps> = ({
 }) => {
   const categories = [
     { id: 'all', label: 'All Recipes', count: recipes.length },
-    { id: 'pickles', label: 'Pickles', count: recipes.filter(r => r.category === 'pickles').length },
-    { id: 'fried-rice', label: 'Fried Rice', count: recipes.filter(r => r.category === 'fried-rice').length },
-    { id: 'chinese', label: 'Chinese Food', count: recipes.filter(r => r.category === 'chinese').length },
-    { id: 'curries', label: 'Curries', count: recipes.filter(r => r.category === 'curries').length },
+    { id: 'appetizers', label: 'Appetizers', count: recipes.filter(r => r.category === 'appetizers').length },
+    { id: 'main-course', label: 'Main Course', count: recipes.filter(r => r.category === 'main-course').length },
+    { id: 'desserts', label: 'Desserts', count: recipes.filter(r => r.category === 'desserts').length },
+    { id: 'beverages', label: 'Beverages', count: recipes.filter(r => r.category === 'beverages').length },
+    { id: 'breakfast', label: 'Breakfast', count: recipes.filter(r => r.category === 'breakfast').length },
+    { id: 'lunch', label: 'Lunch', count: recipes.filter(r => r.category === 'lunch').length },
+    { id: 'dinner', label: 'Dinner', count: recipes.filter(r => r.category === 'dinner').length },
+    { id: 'snacks', label: 'Snacks', count: recipes.filter(r => r.category === 'snacks').length },
+    { id: 'soups', label: 'Soups', count: recipes.filter(r => r.category === 'soups').length },
+    { id: 'salads', label: 'Salads', count: recipes.filter(r => r.category === 'salads').length },
+    { id: 'vegetarian', label: 'Vegetarian', count: recipes.filter(r => r.category === 'vegetarian').length },
+    { id: 'vegan', label: 'Vegan', count: recipes.filter(r => r.category === 'vegan').length },
+    { id: 'gluten-free', label: 'Gluten Free', count: recipes.filter(r => r.category === 'gluten-free').length },
     { id: 'other', label: 'Other', count: recipes.filter(r => r.category === 'other').length },
   ];
 
   return (
     <Tabs value={activeCategory} onValueChange={onCategoryChange} className="mb-8">
-      <TabsList className="grid w-full grid-cols-6 bg-white border border-orange-200">
-        {categories.map((category) => (
+      <TabsList className="grid w-full grid-cols-8 bg-white border border-orange-200 overflow-x-auto">
+        {categories.slice(0, 8).map((category) => (
           <TabsTrigger 
             key={category.id} 
             value={category.id}
-            className="data-[state=active]:bg-orange-500 data-[state=active]:text-white"
+            className="data-[state=active]:bg-orange-500 data-[state=active]:text-white text-xs"
           >
             {category.label} ({category.count})
           </TabsTrigger>
         ))}
       </TabsList>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {categories.slice(8).map((category) => (
+          <button
+            key={category.id}
+            onClick={() => onCategoryChange(category.id)}
+            className={`px-3 py-1 text-sm rounded-full border transition-colors ${
+              activeCategory === category.id
+                ? 'bg-orange-500 text-white border-orange-500'
+                : 'bg-white text-gray-700 border-gray-300 hover:border-orange-300'
+            }`}
+          >
+            {category.label} ({category.count})
+          </button>
+        ))}
+      </div>
 
       {categories.map((category) => (
         <TabsContent key={category.id} value={category.id}>
@@ -63,22 +88,14 @@ const RecipeTabs: React.FC<RecipeTabsProps> = ({
               <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
                 <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {recipes.length === 0 ? 'Loading recipes...' : 'No recipes found'}
+                  {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
                 </h3>
                 <p className="text-gray-600 mb-4">
                   {recipes.length === 0 
-                    ? 'Please wait while we load your recipe collection.'
+                    ? 'Start building your recipe collection by adding your first recipe!'
                     : 'Try adjusting your search terms or category to find what you\'re looking for.'
                   }
                 </p>
-                {recipes.length === 0 && (
-                  <Button 
-                    onClick={onLoadSampleRecipes}
-                    className="bg-orange-500 hover:bg-orange-600 text-white"
-                  >
-                    Load Sample Recipes
-                  </Button>
-                )}
               </div>
             </div>
           ) : (

@@ -14,20 +14,13 @@ export const useRecipes = () => {
     if (savedRecipes) {
       try {
         const parsedRecipes = JSON.parse(savedRecipes);
-        if (parsedRecipes && parsedRecipes.length > 0) {
+        if (parsedRecipes && Array.isArray(parsedRecipes)) {
           setRecipes(parsedRecipes);
-        } else {
-          // If saved recipes is empty array, load sample recipes
-          loadSampleRecipes();
         }
       } catch (error) {
         console.error('Error loading recipes from localStorage:', error);
-        // If error parsing, load sample recipes
-        loadSampleRecipes();
+        setRecipes([]);
       }
-    } else {
-      // If no saved recipes, load sample recipes
-      loadSampleRecipes();
     }
   }, []);
 
@@ -42,7 +35,7 @@ export const useRecipes = () => {
     localStorage.setItem('recipeBook', JSON.stringify(recipesWithIds));
   };
 
-  // Save recipes to localStorage whenever recipes change (but not on initial load)
+  // Save recipes to localStorage whenever recipes change
   useEffect(() => {
     if (recipes.length > 0) {
       localStorage.setItem('recipeBook', JSON.stringify(recipes));

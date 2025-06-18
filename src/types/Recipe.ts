@@ -7,5 +7,5 @@ export interface Recipe {
   image?: string;
   prepTime?: string;
   servings?: string;
-  category: 'appetizers' | 'main-course' | 'desserts' | 'beverages' | 'breakfast' | 'lunch' | 'dinner' | 'snacks' | 'soups' | 'salads' | 'vegetarian' | 'vegan' | 'gluten-free' | 'other';
+  category: 'pickles' | 'fried-rice' | 'chinese' | 'curries' | 'other';
 }

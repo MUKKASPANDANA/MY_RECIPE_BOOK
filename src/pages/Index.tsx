@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Badge } from '@/components/ui/badge';
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 import AddRecipeForm from '@/components/AddRecipeForm';
 import EditRecipeForm from '@/components/EditRecipeForm';
 import RecipeCard from '@/components/RecipeCard';
@@ -23,6 +24,8 @@ const Index = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const recipesPerPage = 5;
   const { toast } = useToast();
 
   // Load recipes from localStorage on component mount
@@ -109,6 +112,17 @@ const Index = () => {
     
     return matchesSearch && matchesCategory;
   });
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
+  const startIndex = (currentPage - 1) * recipesPerPage;
+  const endIndex = startIndex + recipesPerPage;
+  const currentRecipes = filteredRecipes.slice(startIndex, endIndex);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, activeCategory]);
 
   const categories = [
     { id: 'all', label: 'All Recipes', count: recipes.length },
@@ -241,6 +255,11 @@ const Index = () => {
           <p className="text-gray-600">
             {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
             {activeCategory !== 'all' && ` in ${categories.find(c => c.id === activeCategory)?.label}`}
+            {filteredRecipes.length > recipesPerPage && (
+              <span className="ml-2">
+                (Page {currentPage} of {totalPages})
+              </span>
+            )}
           </p>
         </div>
 
@@ -270,34 +289,74 @@ const Index = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredRecipes.map((recipe) => (
-              <div key={recipe.id} className="relative group">
-                <RecipeCard
-                  recipe={recipe}
-                  onClick={() => setSelectedRecipe(recipe)}
-                />
-                <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Button
-                    onClick={() => handleEdit(recipe)}
-                    size="sm"
-                    variant="outline"
-                    className="bg-white/90 hover:bg-white h-8 w-8 p-0"
-                  >
-                    <Edit className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    onClick={(e) => handleDelete(e, recipe.id)}
-                    size="sm"
-                    variant="outline"
-                    className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
+              {currentRecipes.map((recipe) => (
+                <div key={recipe.id} className="relative group">
+                  <RecipeCard
+                    recipe={recipe}
+                    onClick={() => setSelectedRecipe(recipe)}
+                  />
+                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Button
+                      onClick={() => handleEdit(recipe)}
+                      size="sm"
+                      variant="outline"
+                      className="bg-white/90 hover:bg-white h-8 w-8 p-0"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      onClick={(e) => handleDelete(e, recipe.id)}
+                      size="sm"
+                      variant="outline"
+                      className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious 
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                      />
+                    </PaginationItem>
+                    
+                    {[...Array(totalPages)].map((_, index) => {
+                      const pageNumber = index + 1;
+                      return (
+                        <PaginationItem key={pageNumber}>
+                          <PaginationLink
+                            onClick={() => setCurrentPage(pageNumber)}
+                            isActive={currentPage === pageNumber}
+                            className="cursor-pointer"
+                          >
+                            {pageNumber}
+                          </PaginationLink>
+                        </PaginationItem>
+                      );
+                    })}
+                    
+                    <PaginationItem>
+                      <PaginationNext 
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
               </div>
-            ))}
-          </div>
+            )}
+          </>
         )}
       </main>
 

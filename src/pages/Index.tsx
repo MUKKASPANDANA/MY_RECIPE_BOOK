@@ -1,16 +1,19 @@
+
 import React, { useState, useEffect } from 'react';
-import { Search, Plus, Book, ChefHat, Edit } from 'lucide-react';
+import { Search, Plus, Book, ChefHat, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { Badge } from '@/components/ui/badge';
 import AddRecipeForm from '@/components/AddRecipeForm';
 import EditRecipeForm from '@/components/EditRecipeForm';
 import RecipeCard from '@/components/RecipeCard';
 import RecipeDetailModal from '@/components/RecipeDetailModal';
 import { Recipe } from '@/types/Recipe';
 import { sampleRecipes } from '@/data/sampleRecipes';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -20,6 +23,7 @@ const Index = () => {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const { toast } = useToast();
 
   // Load recipes from localStorage on component mount
   useEffect(() => {
@@ -30,11 +34,9 @@ const Index = () => {
         setRecipes(parsedRecipes);
       } catch (error) {
         console.error('Error loading recipes from localStorage:', error);
-        // If no saved recipes, load sample recipes
         loadSampleRecipes();
       }
     } else {
-      // Load sample recipes if no saved recipes
       loadSampleRecipes();
     }
   }, []);
@@ -60,6 +62,10 @@ const Index = () => {
     };
     setRecipes(prev => [...prev, newRecipe]);
     setIsAddDialogOpen(false);
+    toast({
+      title: "Recipe Added",
+      description: `${recipe.name} has been added to your recipe book.`,
+    });
   };
 
   // Edit recipe
@@ -74,7 +80,22 @@ const Index = () => {
       ));
       setIsEditDialogOpen(false);
       setEditingRecipe(null);
+      toast({
+        title: "Recipe Updated",
+        description: `${updatedRecipe.name} has been updated successfully.`,
+      });
     }
+  };
+
+  // Delete recipe
+  const deleteRecipe = (recipeId: string) => {
+    const recipeToDelete = recipes.find(r => r.id === recipeId);
+    setRecipes(prev => prev.filter(recipe => recipe.id !== recipeId));
+    toast({
+      title: "Recipe Deleted",
+      description: `${recipeToDelete?.name} has been removed from your recipe book.`,
+      variant: "destructive",
+    });
   };
 
   // Filter recipes based on search term and category
@@ -135,6 +156,11 @@ const Index = () => {
     setIsEditDialogOpen(true);
   };
 
+  const handleDelete = (e: React.MouseEvent, recipeId: string) => {
+    e.stopPropagation();
+    deleteRecipe(recipeId);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
       {/* Header */}
@@ -184,83 +210,95 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Category Tabs - Updated to handle scrolling for many categories */}
+        {/* Horizontal Scrollable Category Bar */}
         <div className="mb-8">
-          <div className="overflow-x-auto">
-            <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
-              <TabsList className="inline-flex h-auto p-1 bg-white border border-orange-200 rounded-lg min-w-full">
-                <div className="flex flex-wrap gap-1">
-                  {categories.map((category) => (
-                    <TabsTrigger 
-                      key={category.id} 
-                      value={category.id}
-                      className="data-[state=active]:bg-orange-500 data-[state=active]:text-white whitespace-nowrap text-xs px-2 py-1"
-                    >
-                      {category.label} ({category.count})
-                    </TabsTrigger>
-                  ))}
-                </div>
-              </TabsList>
-
-              {categories.map((category) => (
-                <TabsContent key={category.id} value={category.id}>
-                  <div className="mb-6 text-center">
-                    <p className="text-gray-600">
-                      {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
-                      {category.id !== 'all' && ` in ${category.label}`}
-                    </p>
-                  </div>
-
-                  {/* Recipes Grid */}
-                  {filteredRecipes.length === 0 ? (
-                    <div className="text-center py-12">
-                      <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
-                        <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                          {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
-                        </h3>
-                        <p className="text-gray-600 mb-4">
-                          {recipes.length === 0 
-                            ? 'Start building your recipe collection by adding your first recipe!'
-                            : 'Try adjusting your search terms or category to find what you\'re looking for.'
-                          }
-                        </p>
-                        {recipes.length === 0 && (
-                          <Button 
-                            onClick={() => setIsAddDialogOpen(true)}
-                            className="bg-orange-500 hover:bg-orange-600 text-white"
-                          >
-                            <Plus className="h-4 w-4 mr-2" />
-                            Add Your First Recipe
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                      {filteredRecipes.map((recipe) => (
-                        <div key={recipe.id} className="relative group">
-                          <RecipeCard
-                            recipe={recipe}
-                            onClick={() => setSelectedRecipe(recipe)}
-                          />
-                          <Button
-                            onClick={() => handleEdit(recipe)}
-                            size="sm"
-                            variant="outline"
-                            className="absolute top-2 right-2 bg-white/90 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </TabsContent>
-              ))}
-            </Tabs>
+          <div className="bg-white rounded-lg border border-orange-200 p-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
+            <ScrollArea className="w-full whitespace-nowrap">
+              <div className="flex space-x-2 pb-2">
+                {categories.map((category) => (
+                  <Badge
+                    key={category.id}
+                    variant={activeCategory === category.id ? "default" : "outline"}
+                    className={`cursor-pointer px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+                      activeCategory === category.id
+                        ? 'bg-orange-500 text-white hover:bg-orange-600'
+                        : 'border-orange-200 text-gray-700 hover:bg-orange-50'
+                    }`}
+                    onClick={() => setActiveCategory(category.id)}
+                  >
+                    {category.label} ({category.count})
+                  </Badge>
+                ))}
+              </div>
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
           </div>
         </div>
+
+        {/* Results Count */}
+        <div className="mb-6 text-center">
+          <p className="text-gray-600">
+            {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
+            {activeCategory !== 'all' && ` in ${categories.find(c => c.id === activeCategory)?.label}`}
+          </p>
+        </div>
+
+        {/* Recipes Grid */}
+        {filteredRecipes.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
+              <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
+              </h3>
+              <p className="text-gray-600 mb-4">
+                {recipes.length === 0 
+                  ? 'Start building your recipe collection by adding your first recipe!'
+                  : 'Try adjusting your search terms or category to find what you\'re looking for.'
+                }
+              </p>
+              {recipes.length === 0 && (
+                <Button 
+                  onClick={() => setIsAddDialogOpen(true)}
+                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add Your First Recipe
+                </Button>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredRecipes.map((recipe) => (
+              <div key={recipe.id} className="relative group">
+                <RecipeCard
+                  recipe={recipe}
+                  onClick={() => setSelectedRecipe(recipe)}
+                />
+                <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Button
+                    onClick={() => handleEdit(recipe)}
+                    size="sm"
+                    variant="outline"
+                    className="bg-white/90 hover:bg-white h-8 w-8 p-0"
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
+                  <Button
+                    onClick={(e) => handleDelete(e, recipe.id)}
+                    size="sm"
+                    variant="outline"
+                    className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </main>
 
       {/* Recipe Detail Modal */}

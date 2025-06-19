@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Book, ChefHat, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -125,44 +124,234 @@ const Index = () => {
   }, [searchTerm, activeCategory]);
 
   const categories = [
-    { id: 'all', label: 'All Recipes', count: recipes.length },
-    { id: 'biryani', label: 'Biryani', count: recipes.filter(r => r.category === 'biryani').length },
-    { id: 'fried-rice', label: 'Fried Rice', count: recipes.filter(r => r.category === 'fried-rice').length },
-    { id: 'pickles', label: 'Pickles', count: recipes.filter(r => r.category === 'pickles').length },
-    { id: 'shakes', label: 'Shakes', count: recipes.filter(r => r.category === 'shakes').length },
-    { id: 'soups', label: 'Soups', count: recipes.filter(r => r.category === 'soups').length },
-    { id: 'salads', label: 'Salads', count: recipes.filter(r => r.category === 'salads').length },
-    { id: 'detox-water', label: 'Detox Water', count: recipes.filter(r => r.category === 'detox-water').length },
-    { id: 'curries', label: 'Curries', count: recipes.filter(r => r.category === 'curries').length },
-    { id: 'non-veg-curries', label: 'Non-Veg Curries', count: recipes.filter(r => r.category === 'non-veg-curries').length },
-    { id: 'snacks', label: 'Snacks', count: recipes.filter(r => r.category === 'snacks').length },
-    { id: 'juices', label: 'Juices', count: recipes.filter(r => r.category === 'juices').length },
-    { id: 'desserts-sweets', label: 'Desserts & Sweets', count: recipes.filter(r => r.category === 'desserts-sweets').length },
-    { id: 'breakfast', label: 'Breakfast', count: recipes.filter(r => r.category === 'breakfast').length },
-    { id: 'street-food', label: 'Street Food', count: recipes.filter(r => r.category === 'street-food').length },
-    { id: 'south-indian', label: 'South Indian', count: recipes.filter(r => r.category === 'south-indian').length },
-    { id: 'north-indian', label: 'North Indian', count: recipes.filter(r => r.category === 'north-indian').length },
-    { id: 'chinese', label: 'Chinese', count: recipes.filter(r => r.category === 'chinese').length },
-    { id: 'italian', label: 'Italian', count: recipes.filter(r => r.category === 'italian').length },
-    { id: 'mexican', label: 'Mexican', count: recipes.filter(r => r.category === 'mexican').length },
-    { id: 'rice-varieties', label: 'Rice Varieties', count: recipes.filter(r => r.category === 'rice-varieties').length },
-    { id: 'roti-paratha', label: 'Roti & Paratha', count: recipes.filter(r => r.category === 'roti-paratha').length },
-    { id: 'gravy-dishes', label: 'Gravy Dishes', count: recipes.filter(r => r.category === 'gravy-dishes').length },
-    { id: 'tandoori', label: 'Tandoori', count: recipes.filter(r => r.category === 'tandoori').length },
-    { id: 'stir-fry', label: 'Stir Fry', count: recipes.filter(r => r.category === 'stir-fry').length },
-    { id: 'healthy-low-cal', label: 'Healthy/Low-Cal', count: recipes.filter(r => r.category === 'healthy-low-cal').length },
-    { id: 'festive-specials', label: 'Festive Specials', count: recipes.filter(r => r.category === 'festive-specials').length },
-    { id: 'one-pot-meals', label: 'One-Pot Meals', count: recipes.filter(r => r.category === 'one-pot-meals').length },
-    { id: 'baking-cakes', label: 'Baking & Cakes', count: recipes.filter(r => r.category === 'baking-cakes').length },
-    { id: 'ice-creams', label: 'Ice Creams', count: recipes.filter(r => r.category === 'ice-creams').length },
-    { id: 'sandwiches-wraps', label: 'Sandwiches & Wraps', count: recipes.filter(r => r.category === 'sandwiches-wraps').length },
-    { id: 'dips-chutneys', label: 'Dips & Chutneys', count: recipes.filter(r => r.category === 'dips-chutneys').length },
-    { id: 'beverages-mocktails', label: 'Beverages & Mocktails', count: recipes.filter(r => r.category === 'beverages-mocktails').length },
-    { id: 'kids-special', label: 'Kids Special', count: recipes.filter(r => r.category === 'kids-special').length },
-    { id: 'party-starters', label: 'Party Starters', count: recipes.filter(r => r.category === 'party-starters').length },
-    { id: 'quick-easy', label: 'Quick & Easy', count: recipes.filter(r => r.category === 'quick-easy').length },
-    { id: 'lunch-box', label: 'Lunch Box', count: recipes.filter(r => r.category === 'lunch-box').length },
-    { id: 'other', label: 'Other', count: recipes.filter(r => r.category === 'other').length },
+    { 
+      id: 'all', 
+      label: 'All Recipes', 
+      count: recipes.length,
+      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800'
+    },
+    { 
+      id: 'biryani', 
+      label: 'Biryani', 
+      count: recipes.filter(r => r.category === 'biryani').length,
+      image: 'https://images.unsplash.com/photo-1563379091339-03246963d117?w=800'
+    },
+    { 
+      id: 'fried-rice', 
+      label: 'Fried Rice', 
+      count: recipes.filter(r => r.category === 'fried-rice').length,
+      image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800'
+    },
+    { 
+      id: 'pickles', 
+      label: 'Pickles', 
+      count: recipes.filter(r => r.category === 'pickles').length,
+      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800'
+    },
+    { 
+      id: 'shakes', 
+      label: 'Shakes', 
+      count: recipes.filter(r => r.category === 'shakes').length,
+      image: 'https://images.unsplash.com/photo-1548373902-d5b6ad046224?w=800'
+    },
+    { 
+      id: 'soups', 
+      label: 'Soups', 
+      count: recipes.filter(r => r.category === 'soups').length,
+      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800'
+    },
+    { 
+      id: 'salads', 
+      label: 'Salads', 
+      count: recipes.filter(r => r.category === 'salads').length,
+      image: 'https://images.unsplash.com/photo-1551248429-40975aa4de74?w=800'
+    },
+    { 
+      id: 'detox-water', 
+      label: 'Detox Water', 
+      count: recipes.filter(r => r.category === 'detox-water').length,
+      image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800'
+    },
+    { 
+      id: 'curries', 
+      label: 'Curries', 
+      count: recipes.filter(r => r.category === 'curries').length,
+      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800'
+    },
+    { 
+      id: 'non-veg-curries', 
+      label: 'Non-Veg Curries', 
+      count: recipes.filter(r => r.category === 'non-veg-curries').length,
+      image: 'https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=800'
+    },
+    { 
+      id: 'snacks', 
+      label: 'Snacks', 
+      count: recipes.filter(r => r.category === 'snacks').length,
+      image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=800'
+    },
+    { 
+      id: 'juices', 
+      label: 'Juices', 
+      count: recipes.filter(r => r.category === 'juices').length,
+      image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800'
+    },
+    { 
+      id: 'desserts-sweets', 
+      label: 'Desserts & Sweets', 
+      count: recipes.filter(r => r.category === 'desserts-sweets').length,
+      image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800'
+    },
+    { 
+      id: 'breakfast', 
+      label: 'Breakfast', 
+      count: recipes.filter(r => r.category === 'breakfast').length,
+      image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800'
+    },
+    { 
+      id: 'street-food', 
+      label: 'Street Food', 
+      count: recipes.filter(r => r.category === 'street-food').length,
+      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'
+    },
+    { 
+      id: 'south-indian', 
+      label: 'South Indian', 
+      count: recipes.filter(r => r.category === 'south-indian').length,
+      image: 'https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=800'
+    },
+    { 
+      id: 'north-indian', 
+      label: 'North Indian', 
+      count: recipes.filter(r => r.category === 'north-indian').length,
+      image: 'https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800'
+    },
+    { 
+      id: 'chinese', 
+      label: 'Chinese', 
+      count: recipes.filter(r => r.category === 'chinese').length,
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800'
+    },
+    { 
+      id: 'italian', 
+      label: 'Italian', 
+      count: recipes.filter(r => r.category === 'italian').length,
+      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800'
+    },
+    { 
+      id: 'mexican', 
+      label: 'Mexican', 
+      count: recipes.filter(r => r.category === 'mexican').length,
+      image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=800'
+    },
+    { 
+      id: 'rice-varieties', 
+      label: 'Rice Varieties', 
+      count: recipes.filter(r => r.category === 'rice-varieties').length,
+      image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800'
+    },
+    { 
+      id: 'roti-paratha', 
+      label: 'Roti & Paratha', 
+      count: recipes.filter(r => r.category === 'roti-paratha').length,
+      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800'
+    },
+    { 
+      id: 'gravy-dishes', 
+      label: 'Gravy Dishes', 
+      count: recipes.filter(r => r.category === 'gravy-dishes').length,
+      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800'
+    },
+    { 
+      id: 'tandoori', 
+      label: 'Tandoori', 
+      count: recipes.filter(r => r.category === 'tandoori').length,
+      image: 'https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=800'
+    },
+    { 
+      id: 'stir-fry', 
+      label: 'Stir Fry', 
+      count: recipes.filter(r => r.category === 'stir-fry').length,
+      image: 'https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800'
+    },
+    { 
+      id: 'healthy-low-cal', 
+      label: 'Healthy/Low-Cal', 
+      count: recipes.filter(r => r.category === 'healthy-low-cal').length,
+      image: 'https://images.unsplash.com/photo-1551248429-40975aa4de74?w=800'
+    },
+    { 
+      id: 'festive-specials', 
+      label: 'Festive Specials', 
+      count: recipes.filter(r => r.category === 'festive-specials').length,
+      image: 'https://images.unsplash.com/photo-1563379091339-03246963d117?w=800'
+    },
+    { 
+      id: 'one-pot-meals', 
+      label: 'One-Pot Meals', 
+      count: recipes.filter(r => r.category === 'one-pot-meals').length,
+      image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800'
+    },
+    { 
+      id: 'baking-cakes', 
+      label: 'Baking & Cakes', 
+      count: recipes.filter(r => r.category === 'baking-cakes').length,
+      image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800'
+    },
+    { 
+      id: 'ice-creams', 
+      label: 'Ice Creams', 
+      count: recipes.filter(r => r.category === 'ice-creams').length,
+      image: 'https://images.unsplash.com/photo-1548373902-d5b6ad046224?w=800'
+    },
+    { 
+      id: 'sandwiches-wraps', 
+      label: 'Sandwiches & Wraps', 
+      count: recipes.filter(r => r.category === 'sandwiches-wraps').length,
+      image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800'
+    },
+    { 
+      id: 'dips-chutneys', 
+      label: 'Dips & Chutneys', 
+      count: recipes.filter(r => r.category === 'dips-chutneys').length,
+      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800'
+    },
+    { 
+      id: 'beverages-mocktails', 
+      label: 'Beverages & Mocktails', 
+      count: recipes.filter(r => r.category === 'beverages-mocktails').length,
+      image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800'
+    },
+    { 
+      id: 'kids-special', 
+      label: 'Kids Special', 
+      count: recipes.filter(r => r.category === 'kids-special').length,
+      image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=800'
+    },
+    { 
+      id: 'party-starters', 
+      label: 'Party Starters', 
+      count: recipes.filter(r => r.category === 'party-starters').length,
+      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'
+    },
+    { 
+      id: 'quick-easy', 
+      label: 'Quick & Easy', 
+      count: recipes.filter(r => r.category === 'quick-easy').length,
+      image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800'
+    },
+    { 
+      id: 'lunch-box', 
+      label: 'Lunch Box', 
+      count: recipes.filter(r => r.category === 'lunch-box').length,
+      image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800'
+    },
+    { 
+      id: 'other', 
+      label: 'Other', 
+      count: recipes.filter(r => r.category === 'other').length,
+      image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=800'
+    },
   ];
 
   const handleEdit = (recipe: Recipe) => {
@@ -224,25 +413,46 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Horizontal Scrollable Category Bar */}
+        {/* Horizontal Scrollable Category Bar with Images */}
         <div className="mb-8">
           <div className="bg-white rounded-lg border border-orange-200 p-4">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
             <ScrollArea className="w-full whitespace-nowrap">
-              <div className="flex space-x-2 pb-2">
+              <div className="flex space-x-4 pb-2">
                 {categories.map((category) => (
-                  <Badge
+                  <div
                     key={category.id}
-                    variant={activeCategory === category.id ? "default" : "outline"}
-                    className={`cursor-pointer px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+                    className={`cursor-pointer transition-all duration-200 whitespace-nowrap ${
                       activeCategory === category.id
-                        ? 'bg-orange-500 text-white hover:bg-orange-600'
-                        : 'border-orange-200 text-gray-700 hover:bg-orange-50'
+                        ? 'transform scale-105'
+                        : 'hover:transform hover:scale-102'
                     }`}
                     onClick={() => setActiveCategory(category.id)}
                   >
-                    {category.label} ({category.count})
-                  </Badge>
+                    <div className={`relative overflow-hidden rounded-lg border-2 ${
+                      activeCategory === category.id
+                        ? 'border-orange-500'
+                        : 'border-orange-200 hover:border-orange-300'
+                    }`}>
+                      <div className="w-24 h-16 relative">
+                        <img
+                          src={category.image}
+                          alt={category.label}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className={`absolute inset-0 flex items-center justify-center ${
+                          activeCategory === category.id
+                            ? 'bg-orange-500/80'
+                            : 'bg-black/40 hover:bg-orange-500/60'
+                        } transition-all duration-200`}>
+                          <div className="text-center">
+                            <p className="text-white text-xs font-semibold">{category.label}</p>
+                            <p className="text-white/90 text-xs">({category.count})</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
               <ScrollBar orientation="horizontal" />

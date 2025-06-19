@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Book, ChefHat, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,7 @@ const Index = () => {
       try {
         const parsedRecipes = JSON.parse(savedRecipes);
         console.log('Parsed recipes:', parsedRecipes);
+        console.log('Setting recipes state with:', parsedRecipes.length, 'recipes');
         setRecipes(parsedRecipes);
       } catch (error) {
         console.error('Error loading recipes from localStorage:', error);
@@ -56,6 +58,7 @@ const Index = () => {
       id: (Date.now() + index).toString(),
     }));
     console.log('Recipes with IDs:', recipesWithIds);
+    console.log('Setting recipes state with sample recipes:', recipesWithIds.length, 'recipes');
     setRecipes(recipesWithIds);
   };
 
@@ -121,10 +124,15 @@ const Index = () => {
     return matchesSearch && matchesCategory;
   });
 
+  console.log('=== RENDERING DEBUG INFO ===');
+  console.log('Current recipes state length:', recipes.length);
   console.log('Current recipes state:', recipes);
+  console.log('Filtered recipes length:', filteredRecipes.length);
   console.log('Filtered recipes:', filteredRecipes);
   console.log('Current page:', currentPage);
   console.log('Recipes per page:', recipesPerPage);
+  console.log('Active category:', activeCategory);
+  console.log('Search term:', searchTerm);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
@@ -132,8 +140,11 @@ const Index = () => {
   const endIndex = startIndex + recipesPerPage;
   const currentRecipes = filteredRecipes.slice(startIndex, endIndex);
 
+  console.log('Current recipes for display length:', currentRecipes.length);
   console.log('Current recipes for display:', currentRecipes);
   console.log('Total pages:', totalPages);
+  console.log('Start index:', startIndex, 'End index:', endIndex);
+  console.log('=== END RENDERING DEBUG INFO ===');
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -537,9 +548,20 @@ const Index = () => {
           </p>
         </div>
 
+        {/* Debug Info - TEMPORARY */}
+        <div className="mb-4 p-4 bg-yellow-100 border border-yellow-300 rounded">
+          <h4 className="font-bold">Debug Info:</h4>
+          <p>Total recipes in state: {recipes.length}</p>
+          <p>Filtered recipes: {filteredRecipes.length}</p>
+          <p>Current recipes to display: {currentRecipes.length}</p>
+          <p>Should show "No recipes" message: {filteredRecipes.length === 0 ? 'YES' : 'NO'}</p>
+        </div>
+
         {/* Recipes Grid */}
+        {console.log('About to render - filteredRecipes.length:', filteredRecipes.length)}
         {filteredRecipes.length === 0 ? (
           <div className="text-center py-12 animate-fade-in">
+            {console.log('Rendering "No recipes" message')}
             <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto transform transition-all duration-300 hover:shadow-md animate-float">
               <Book className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-pulse" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2 animate-fade-in">
@@ -564,39 +586,43 @@ const Index = () => {
           </div>
         ) : (
           <>
+            {console.log('Rendering recipes grid with', currentRecipes.length, 'recipes')}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
-              {currentRecipes.map((recipe, index) => (
-                <div 
-                  key={recipe.id} 
-                  className="relative group animate-fade-in animate-slide-up"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="transform transition-all duration-500 hover: scale-105 hover:-translate-y-2 hover:rotate-1">
-                    <RecipeCard
-                      recipe={recipe}
-                      onClick={() => setSelectedRecipe(recipe)}
-                    />
+              {currentRecipes.map((recipe, index) => {
+                console.log('Rendering recipe:', recipe.name, 'at index:', index);
+                return (
+                  <div 
+                    key={recipe.id} 
+                    className="relative group animate-fade-in animate-slide-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <div className="transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:rotate-1">
+                      <RecipeCard
+                        recipe={recipe}
+                        onClick={() => setSelectedRecipe(recipe)}
+                      />
+                    </div>
+                    <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 animate-slide-in-right">
+                      <Button
+                        onClick={() => handleEdit(recipe)}
+                        size="sm"
+                        variant="outline"
+                        className="bg-white/90 hover:bg-white h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110 animate-bounce-gentle"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        onClick={(e) => handleDelete(e, recipe.id)}
+                        size="sm"
+                        variant="outline"
+                        className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110 animate-shake"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
                   </div>
-                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 animate-slide-in-right">
-                    <Button
-                      onClick={() => handleEdit(recipe)}
-                      size="sm"
-                      variant="outline"
-                      className="bg-white/90 hover:bg-white h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110 animate-bounce-gentle"
-                    >
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      onClick={(e) => handleDelete(e, recipe.id)}
-                      size="sm"
-                      variant="outline"
-                      className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110 animate-shake"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Pagination */}

@@ -440,18 +440,14 @@ const Index = () => {
                           alt={category.label}
                           className="w-full h-full object-cover"
                         />
-                        <div className={`absolute inset-0 flex items-center justify-center ${
-                          activeCategory === category.id
-                            ? 'bg-orange-500/80'
-                            : 'bg-black/40 hover:bg-orange-500/60'
-                        } transition-all duration-200`}>
-                          <div className="text-center">
-                            <p className="text-white text-xs font-semibold">{category.label}</p>
-                            <p className="text-white/90 text-xs">({category.count})</p>
-                          </div>
-                        </div>
                       </div>
                     </div>
+                    <p className="text-center text-xs font-medium text-gray-700 mt-1">
+                      {category.label}
+                    </p>
+                    <p className="text-center text-xs text-gray-500">
+                      ({category.count})
+                    </p>
                   </div>
                 ))}
               </div>

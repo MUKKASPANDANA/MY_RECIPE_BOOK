@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Book, ChefHat, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -430,6 +429,9 @@ const Index = () => {
     deleteRecipe(recipeId);
   };
 
+  // Log before rendering the main content
+  console.log('About to render - filteredRecipes.length:', filteredRecipes.length);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
       {/* Header */}
@@ -558,10 +560,8 @@ const Index = () => {
         </div>
 
         {/* Recipes Grid */}
-        {console.log('About to render - filteredRecipes.length:', filteredRecipes.length)}
         {filteredRecipes.length === 0 ? (
           <div className="text-center py-12 animate-fade-in">
-            {console.log('Rendering "No recipes" message')}
             <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto transform transition-all duration-300 hover:shadow-md animate-float">
               <Book className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-pulse" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2 animate-fade-in">
@@ -586,7 +586,10 @@ const Index = () => {
           </div>
         ) : (
           <>
-            {console.log('Rendering recipes grid with', currentRecipes.length, 'recipes')}
+            {(() => {
+              console.log('Rendering recipes grid with', currentRecipes.length, 'recipes');
+              return null; // This IIFE allows us to run console.log without returning void in JSX
+            })()}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
               {currentRecipes.map((recipe, index) => {
                 console.log('Rendering recipe:', recipe.name, 'at index:', index);

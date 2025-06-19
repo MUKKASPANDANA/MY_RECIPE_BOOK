@@ -29,30 +29,39 @@ const Index = () => {
 
   // Load recipes from localStorage on component mount
   useEffect(() => {
+    console.log('Loading recipes from localStorage...');
     const savedRecipes = localStorage.getItem('recipeBook');
+    console.log('Saved recipes from localStorage:', savedRecipes);
+    
     if (savedRecipes) {
       try {
         const parsedRecipes = JSON.parse(savedRecipes);
+        console.log('Parsed recipes:', parsedRecipes);
         setRecipes(parsedRecipes);
       } catch (error) {
         console.error('Error loading recipes from localStorage:', error);
         loadSampleRecipes();
       }
     } else {
+      console.log('No saved recipes found, loading sample recipes');
       loadSampleRecipes();
     }
   }, []);
 
   const loadSampleRecipes = () => {
+    console.log('Loading sample recipes...');
+    console.log('Sample recipes data:', sampleRecipes);
     const recipesWithIds: Recipe[] = sampleRecipes.map((recipe, index) => ({
       ...recipe,
       id: (Date.now() + index).toString(),
     }));
+    console.log('Recipes with IDs:', recipesWithIds);
     setRecipes(recipesWithIds);
   };
 
   // Save recipes to localStorage whenever recipes change
   useEffect(() => {
+    console.log('Saving recipes to localStorage:', recipes);
     localStorage.setItem('recipeBook', JSON.stringify(recipes));
   }, [recipes]);
 
@@ -112,11 +121,19 @@ const Index = () => {
     return matchesSearch && matchesCategory;
   });
 
+  console.log('Current recipes state:', recipes);
+  console.log('Filtered recipes:', filteredRecipes);
+  console.log('Current page:', currentPage);
+  console.log('Recipes per page:', recipesPerPage);
+
   // Pagination logic
   const totalPages = Math.ceil(filteredRecipes.length / recipesPerPage);
   const startIndex = (currentPage - 1) * recipesPerPage;
   const endIndex = startIndex + recipesPerPage;
   const currentRecipes = filteredRecipes.slice(startIndex, endIndex);
+
+  console.log('Current recipes for display:', currentRecipes);
+  console.log('Total pages:', totalPages);
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -554,7 +571,7 @@ const Index = () => {
                   className="relative group animate-fade-in animate-slide-up"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="transform transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:rotate-1">
+                  <div className="transform transition-all duration-500 hover: scale-105 hover:-translate-y-2 hover:rotate-1">
                     <RecipeCard
                       recipe={recipe}
                       onClick={() => setSelectedRecipe(recipe)}

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Search, Plus, Book, ChefHat, Edit, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -367,11 +368,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-orange-100">
+      <header className="bg-white shadow-sm border-b border-orange-100 animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-orange-500 p-2 rounded-lg">
+              <div className="bg-orange-500 p-2 rounded-lg transform transition-transform duration-200 hover:scale-110">
                 <ChefHat className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -382,12 +383,12 @@ const Index = () => {
             
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white transform transition-all duration-200 hover:scale-105">
                   <Plus className="h-4 w-4 mr-2" />
                   Add Recipe
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
                 <DialogHeader>
                   <DialogTitle>Add New Recipe</DialogTitle>
                 </DialogHeader>
@@ -400,7 +401,7 @@ const Index = () => {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Search Bar */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in">
           <div className="relative max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <Input
@@ -408,41 +409,41 @@ const Index = () => {
               placeholder="Search recipes or ingredients..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 border-orange-200 focus:border-orange-500 focus:ring-orange-500"
+              className="pl-10 border-orange-200 focus:border-orange-500 focus:ring-orange-500 transition-all duration-200"
             />
           </div>
         </div>
 
-        {/* Horizontal Scrollable Category Bar with Images */}
-        <div className="mb-8">
-          <div className="bg-white rounded-lg border border-orange-200 p-4">
+        {/* Horizontal Scrollable Category Bar with Oval Images */}
+        <div className="mb-8 animate-fade-in">
+          <div className="bg-white rounded-lg border border-orange-200 p-4 shadow-sm">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
             <ScrollArea className="w-full whitespace-nowrap">
               <div className="flex space-x-4 pb-2">
                 {categories.map((category) => (
                   <div
                     key={category.id}
-                    className={`cursor-pointer transition-all duration-200 whitespace-nowrap ${
+                    className={`cursor-pointer transition-all duration-300 whitespace-nowrap ${
                       activeCategory === category.id
-                        ? 'transform scale-105'
-                        : 'hover:transform hover:scale-102'
+                        ? 'transform scale-110'
+                        : 'hover:transform hover:scale-105'
                     }`}
                     onClick={() => setActiveCategory(category.id)}
                   >
-                    <div className={`relative overflow-hidden rounded-lg border-2 ${
+                    <div className={`relative overflow-hidden rounded-full border-3 transition-all duration-300 ${
                       activeCategory === category.id
-                        ? 'border-orange-500'
-                        : 'border-orange-200 hover:border-orange-300'
+                        ? 'border-orange-500 shadow-lg shadow-orange-200'
+                        : 'border-orange-200 hover:border-orange-300 hover:shadow-md'
                     }`}>
-                      <div className="w-24 h-16 relative">
+                      <div className="w-20 h-20 relative">
                         <img
                           src={category.image}
                           alt={category.label}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                         />
                       </div>
                     </div>
-                    <p className="text-center text-xs font-medium text-gray-700 mt-1">
+                    <p className="text-center text-xs font-medium text-gray-700 mt-2 transition-colors duration-200">
                       {category.label}
                     </p>
                     <p className="text-center text-xs text-gray-500">
@@ -457,7 +458,7 @@ const Index = () => {
         </div>
 
         {/* Results Count */}
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center animate-fade-in">
           <p className="text-gray-600">
             {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
             {activeCategory !== 'all' && ` in ${categories.find(c => c.id === activeCategory)?.label}`}
@@ -471,9 +472,9 @@ const Index = () => {
 
         {/* Recipes Grid */}
         {filteredRecipes.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
-              <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <div className="text-center py-12 animate-fade-in">
+            <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto transform transition-all duration-300 hover:shadow-md">
+              <Book className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-pulse" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
               </h3>
@@ -486,7 +487,7 @@ const Index = () => {
               {recipes.length === 0 && (
                 <Button 
                   onClick={() => setIsAddDialogOpen(true)}
-                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                  className="bg-orange-500 hover:bg-orange-600 text-white transform transition-all duration-200 hover:scale-105"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Your First Recipe
@@ -497,18 +498,24 @@ const Index = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
-              {currentRecipes.map((recipe) => (
-                <div key={recipe.id} className="relative group">
-                  <RecipeCard
-                    recipe={recipe}
-                    onClick={() => setSelectedRecipe(recipe)}
-                  />
-                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              {currentRecipes.map((recipe, index) => (
+                <div 
+                  key={recipe.id} 
+                  className="relative group animate-fade-in"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <div className="transform transition-all duration-300 hover:scale-105 hover:-translate-y-1">
+                    <RecipeCard
+                      recipe={recipe}
+                      onClick={() => setSelectedRecipe(recipe)}
+                    />
+                  </div>
+                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
                       onClick={() => handleEdit(recipe)}
                       size="sm"
                       variant="outline"
-                      className="bg-white/90 hover:bg-white h-8 w-8 p-0"
+                      className="bg-white/90 hover:bg-white h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110"
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
@@ -516,7 +523,7 @@ const Index = () => {
                       onClick={(e) => handleDelete(e, recipe.id)}
                       size="sm"
                       variant="outline"
-                      className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0"
+                      className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -527,13 +534,13 @@ const Index = () => {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <Pagination>
                   <PaginationContent>
                     <PaginationItem>
                       <PaginationPrevious 
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                        className={`transition-all duration-200 ${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:scale-105'}`}
                       />
                     </PaginationItem>
                     
@@ -544,7 +551,7 @@ const Index = () => {
                           <PaginationLink
                             onClick={() => setCurrentPage(pageNumber)}
                             isActive={currentPage === pageNumber}
-                            className="cursor-pointer"
+                            className="cursor-pointer transition-all duration-200 hover:scale-105"
                           >
                             {pageNumber}
                           </PaginationLink>
@@ -555,7 +562,7 @@ const Index = () => {
                     <PaginationItem>
                       <PaginationNext 
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                        className={`transition-all duration-200 ${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:scale-105'}`}
                       />
                     </PaginationItem>
                   </PaginationContent>
@@ -577,7 +584,7 @@ const Index = () => {
 
       {/* Edit Recipe Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
           <DialogHeader>
             <DialogTitle>Edit Recipe</DialogTitle>
           </DialogHeader>

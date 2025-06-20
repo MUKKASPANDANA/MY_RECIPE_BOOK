@@ -125,44 +125,234 @@ const Index = () => {
   }, [searchTerm, activeCategory]);
 
   const categories = [
-    { id: 'all', label: 'All Recipes', count: recipes.length },
-    { id: 'biryani', label: 'Biryani', count: recipes.filter(r => r.category === 'biryani').length },
-    { id: 'fried-rice', label: 'Fried Rice', count: recipes.filter(r => r.category === 'fried-rice').length },
-    { id: 'pickles', label: 'Pickles', count: recipes.filter(r => r.category === 'pickles').length },
-    { id: 'shakes', label: 'Shakes', count: recipes.filter(r => r.category === 'shakes').length },
-    { id: 'soups', label: 'Soups', count: recipes.filter(r => r.category === 'soups').length },
-    { id: 'salads', label: 'Salads', count: recipes.filter(r => r.category === 'salads').length },
-    { id: 'detox-water', label: 'Detox Water', count: recipes.filter(r => r.category === 'detox-water').length },
-    { id: 'curries', label: 'Curries', count: recipes.filter(r => r.category === 'curries').length },
-    { id: 'non-veg-curries', label: 'Non-Veg Curries', count: recipes.filter(r => r.category === 'non-veg-curries').length },
-    { id: 'snacks', label: 'Snacks', count: recipes.filter(r => r.category === 'snacks').length },
-    { id: 'juices', label: 'Juices', count: recipes.filter(r => r.category === 'juices').length },
-    { id: 'desserts-sweets', label: 'Desserts & Sweets', count: recipes.filter(r => r.category === 'desserts-sweets').length },
-    { id: 'breakfast', label: 'Breakfast', count: recipes.filter(r => r.category === 'breakfast').length },
-    { id: 'street-food', label: 'Street Food', count: recipes.filter(r => r.category === 'street-food').length },
-    { id: 'south-indian', label: 'South Indian', count: recipes.filter(r => r.category === 'south-indian').length },
-    { id: 'north-indian', label: 'North Indian', count: recipes.filter(r => r.category === 'north-indian').length },
-    { id: 'chinese', label: 'Chinese', count: recipes.filter(r => r.category === 'chinese').length },
-    { id: 'italian', label: 'Italian', count: recipes.filter(r => r.category === 'italian').length },
-    { id: 'mexican', label: 'Mexican', count: recipes.filter(r => r.category === 'mexican').length },
-    { id: 'rice-varieties', label: 'Rice Varieties', count: recipes.filter(r => r.category === 'rice-varieties').length },
-    { id: 'roti-paratha', label: 'Roti & Paratha', count: recipes.filter(r => r.category === 'roti-paratha').length },
-    { id: 'gravy-dishes', label: 'Gravy Dishes', count: recipes.filter(r => r.category === 'gravy-dishes').length },
-    { id: 'tandoori', label: 'Tandoori', count: recipes.filter(r => r.category === 'tandoori').length },
-    { id: 'stir-fry', label: 'Stir Fry', count: recipes.filter(r => r.category === 'stir-fry').length },
-    { id: 'healthy-low-cal', label: 'Healthy/Low-Cal', count: recipes.filter(r => r.category === 'healthy-low-cal').length },
-    { id: 'festive-specials', label: 'Festive Specials', count: recipes.filter(r => r.category === 'festive-specials').length },
-    { id: 'one-pot-meals', label: 'One-Pot Meals', count: recipes.filter(r => r.category === 'one-pot-meals').length },
-    { id: 'baking-cakes', label: 'Baking & Cakes', count: recipes.filter(r => r.category === 'baking-cakes').length },
-    { id: 'ice-creams', label: 'Ice Creams', count: recipes.filter(r => r.category === 'ice-creams').length },
-    { id: 'sandwiches-wraps', label: 'Sandwiches & Wraps', count: recipes.filter(r => r.category === 'sandwiches-wraps').length },
-    { id: 'dips-chutneys', label: 'Dips & Chutneys', count: recipes.filter(r => r.category === 'dips-chutneys').length },
-    { id: 'beverages-mocktails', label: 'Beverages & Mocktails', count: recipes.filter(r => r.category === 'beverages-mocktails').length },
-    { id: 'kids-special', label: 'Kids Special', count: recipes.filter(r => r.category === 'kids-special').length },
-    { id: 'party-starters', label: 'Party Starters', count: recipes.filter(r => r.category === 'party-starters').length },
-    { id: 'quick-easy', label: 'Quick & Easy', count: recipes.filter(r => r.category === 'quick-easy').length },
-    { id: 'lunch-box', label: 'Lunch Box', count: recipes.filter(r => r.category === 'lunch-box').length },
-    { id: 'other', label: 'Other', count: recipes.filter(r => r.category === 'other').length },
+    { 
+      id: 'all', 
+      label: 'All Recipes', 
+      count: recipes.length,
+      image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800'
+    },
+    { 
+      id: 'biryani', 
+      label: 'Biryani', 
+      count: recipes.filter(r => r.category === 'biryani').length,
+      image: 'https://images.unsplash.com/photo-1563379091339-03246963d117?w=800'
+    },
+    { 
+      id: 'fried-rice', 
+      label: 'Fried Rice', 
+      count: recipes.filter(r => r.category === 'fried-rice').length,
+      image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800'
+    },
+    { 
+      id: 'pickles', 
+      label: 'Pickles', 
+      count: recipes.filter(r => r.category === 'pickles').length,
+      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800'
+    },
+    { 
+      id: 'shakes', 
+      label: 'Shakes', 
+      count: recipes.filter(r => r.category === 'shakes').length,
+      image: 'https://images.unsplash.com/photo-1548373902-d5b6ad046224?w=800'
+    },
+    { 
+      id: 'soups', 
+      label: 'Soups', 
+      count: recipes.filter(r => r.category === 'soups').length,
+      image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800'
+    },
+    { 
+      id: 'salads', 
+      label: 'Salads', 
+      count: recipes.filter(r => r.category === 'salads').length,
+      image: 'https://images.unsplash.com/photo-1551248429-40975aa4de74?w=800'
+    },
+    { 
+      id: 'detox-water', 
+      label: 'Detox Water', 
+      count: recipes.filter(r => r.category === 'detox-water').length,
+      image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800'
+    },
+    { 
+      id: 'curries', 
+      label: 'Curries', 
+      count: recipes.filter(r => r.category === 'curries').length,
+      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800'
+    },
+    { 
+      id: 'non-veg-curries', 
+      label: 'Non-Veg Curries', 
+      count: recipes.filter(r => r.category === 'non-veg-curries').length,
+      image: 'https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=800'
+    },
+    { 
+      id: 'snacks', 
+      label: 'Snacks', 
+      count: recipes.filter(r => r.category === 'snacks').length,
+      image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=800'
+    },
+    { 
+      id: 'juices', 
+      label: 'Juices', 
+      count: recipes.filter(r => r.category === 'juices').length,
+      image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800'
+    },
+    { 
+      id: 'desserts-sweets', 
+      label: 'Desserts & Sweets', 
+      count: recipes.filter(r => r.category === 'desserts-sweets').length,
+      image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800'
+    },
+    { 
+      id: 'breakfast', 
+      label: 'Breakfast', 
+      count: recipes.filter(r => r.category === 'breakfast').length,
+      image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800'
+    },
+    { 
+      id: 'street-food', 
+      label: 'Street Food', 
+      count: recipes.filter(r => r.category === 'street-food').length,
+      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'
+    },
+    { 
+      id: 'south-indian', 
+      label: 'South Indian', 
+      count: recipes.filter(r => r.category === 'south-indian').length,
+      image: 'https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=800'
+    },
+    { 
+      id: 'north-indian', 
+      label: 'North Indian', 
+      count: recipes.filter(r => r.category === 'north-indian').length,
+      image: 'https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800'
+    },
+    { 
+      id: 'chinese', 
+      label: 'Chinese', 
+      count: recipes.filter(r => r.category === 'chinese').length,
+      image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800'
+    },
+    { 
+      id: 'italian', 
+      label: 'Italian', 
+      count: recipes.filter(r => r.category === 'italian').length,
+      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800'
+    },
+    { 
+      id: 'mexican', 
+      label: 'Mexican', 
+      count: recipes.filter(r => r.category === 'mexican').length,
+      image: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=800'
+    },
+    { 
+      id: 'rice-varieties', 
+      label: 'Rice Varieties', 
+      count: recipes.filter(r => r.category === 'rice-varieties').length,
+      image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800'
+    },
+    { 
+      id: 'roti-paratha', 
+      label: 'Roti & Paratha', 
+      count: recipes.filter(r => r.category === 'roti-paratha').length,
+      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800'
+    },
+    { 
+      id: 'gravy-dishes', 
+      label: 'Gravy Dishes', 
+      count: recipes.filter(r => r.category === 'gravy-dishes').length,
+      image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800'
+    },
+    { 
+      id: 'tandoori', 
+      label: 'Tandoori', 
+      count: recipes.filter(r => r.category === 'tandoori').length,
+      image: 'https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=800'
+    },
+    { 
+      id: 'stir-fry', 
+      label: 'Stir Fry', 
+      count: recipes.filter(r => r.category === 'stir-fry').length,
+      image: 'https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800'
+    },
+    { 
+      id: 'healthy-low-cal', 
+      label: 'Healthy/Low-Cal', 
+      count: recipes.filter(r => r.category === 'healthy-low-cal').length,
+      image: 'https://images.unsplash.com/photo-1551248429-40975aa4de74?w=800'
+    },
+    { 
+      id: 'festive-specials', 
+      label: 'Festive Specials', 
+      count: recipes.filter(r => r.category === 'festive-specials').length,
+      image: 'https://images.unsplash.com/photo-1563379091339-03246963d117?w=800'
+    },
+    { 
+      id: 'one-pot-meals', 
+      label: 'One-Pot Meals', 
+      count: recipes.filter(r => r.category === 'one-pot-meals').length,
+      image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800'
+    },
+    { 
+      id: 'baking-cakes', 
+      label: 'Baking & Cakes', 
+      count: recipes.filter(r => r.category === 'baking-cakes').length,
+      image: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800'
+    },
+    { 
+      id: 'ice-creams', 
+      label: 'Ice Creams', 
+      count: recipes.filter(r => r.category === 'ice-creams').length,
+      image: 'https://images.unsplash.com/photo-1548373902-d5b6ad046224?w=800'
+    },
+    { 
+      id: 'sandwiches-wraps', 
+      label: 'Sandwiches & Wraps', 
+      count: recipes.filter(r => r.category === 'sandwiches-wraps').length,
+      image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800'
+    },
+    { 
+      id: 'dips-chutneys', 
+      label: 'Dips & Chutneys', 
+      count: recipes.filter(r => r.category === 'dips-chutneys').length,
+      image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=800'
+    },
+    { 
+      id: 'beverages-mocktails', 
+      label: 'Beverages & Mocktails', 
+      count: recipes.filter(r => r.category === 'beverages-mocktails').length,
+      image: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800'
+    },
+    { 
+      id: 'kids-special', 
+      label: 'Kids Special', 
+      count: recipes.filter(r => r.category === 'kids-special').length,
+      image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=800'
+    },
+    { 
+      id: 'party-starters', 
+      label: 'Party Starters', 
+      count: recipes.filter(r => r.category === 'party-starters').length,
+      image: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800'
+    },
+    { 
+      id: 'quick-easy', 
+      label: 'Quick & Easy', 
+      count: recipes.filter(r => r.category === 'quick-easy').length,
+      image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800'
+    },
+    { 
+      id: 'lunch-box', 
+      label: 'Lunch Box', 
+      count: recipes.filter(r => r.category === 'lunch-box').length,
+      image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800'
+    },
+    { 
+      id: 'other', 
+      label: 'Other', 
+      count: recipes.filter(r => r.category === 'other').length,
+      image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=800'
+    },
   ];
 
   const handleEdit = (recipe: Recipe) => {
@@ -178,11 +368,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-orange-100">
+      <header className="bg-white shadow-sm border-b border-orange-100 animate-fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="bg-orange-500 p-2 rounded-lg">
+              <div className="bg-orange-500 p-2 rounded-lg transform transition-transform duration-200 hover:scale-110">
                 <ChefHat className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -193,12 +383,12 @@ const Index = () => {
             
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white transform transition-all duration-200 hover:scale-105">
                   <Plus className="h-4 w-4 mr-2" />
                   Add Recipe
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
                 <DialogHeader>
                   <DialogTitle>Add New Recipe</DialogTitle>
                 </DialogHeader>
@@ -211,7 +401,7 @@ const Index = () => {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Search Bar */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in">
           <div className="relative max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <Input
@@ -219,30 +409,47 @@ const Index = () => {
               placeholder="Search recipes or ingredients..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 border-orange-200 focus:border-orange-500 focus:ring-orange-500"
+              className="pl-10 border-orange-200 focus:border-orange-500 focus:ring-orange-500 transition-all duration-200"
             />
           </div>
         </div>
 
-        {/* Horizontal Scrollable Category Bar */}
-        <div className="mb-8">
-          <div className="bg-white rounded-lg border border-orange-200 p-4">
+        {/* Horizontal Scrollable Category Bar with Oval Images */}
+        <div className="mb-8 animate-fade-in">
+          <div className="bg-white rounded-lg border border-orange-200 p-4 shadow-sm">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
             <ScrollArea className="w-full whitespace-nowrap">
-              <div className="flex space-x-2 pb-2">
+              <div className="flex space-x-4 pb-2">
                 {categories.map((category) => (
-                  <Badge
+                  <div
                     key={category.id}
-                    variant={activeCategory === category.id ? "default" : "outline"}
-                    className={`cursor-pointer px-4 py-2 text-sm font-medium transition-colors whitespace-nowrap ${
+                    className={`cursor-pointer transition-all duration-300 whitespace-nowrap ${
                       activeCategory === category.id
-                        ? 'bg-orange-500 text-white hover:bg-orange-600'
-                        : 'border-orange-200 text-gray-700 hover:bg-orange-50'
+                        ? 'transform scale-110'
+                        : 'hover:transform hover:scale-105'
                     }`}
                     onClick={() => setActiveCategory(category.id)}
                   >
-                    {category.label} ({category.count})
-                  </Badge>
+                    <div className={`relative overflow-hidden rounded-full border-3 transition-all duration-300 ${
+                      activeCategory === category.id
+                        ? 'border-orange-500 shadow-lg shadow-orange-200'
+                        : 'border-orange-200 hover:border-orange-300 hover:shadow-md'
+                    }`}>
+                      <div className="w-20 h-20 relative">
+                        <img
+                          src={category.image}
+                          alt={category.label}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                        />
+                      </div>
+                    </div>
+                    <p className="text-center text-xs font-medium text-gray-700 mt-2 transition-colors duration-200">
+                      {category.label}
+                    </p>
+                    <p className="text-center text-xs text-gray-500">
+                      ({category.count})
+                    </p>
+                  </div>
                 ))}
               </div>
               <ScrollBar orientation="horizontal" />
@@ -251,7 +458,7 @@ const Index = () => {
         </div>
 
         {/* Results Count */}
-        <div className="mb-6 text-center">
+        <div className="mb-6 text-center animate-fade-in">
           <p className="text-gray-600">
             {filteredRecipes.length} {filteredRecipes.length === 1 ? 'recipe' : 'recipes'} found
             {activeCategory !== 'all' && ` in ${categories.find(c => c.id === activeCategory)?.label}`}
@@ -265,9 +472,9 @@ const Index = () => {
 
         {/* Recipes Grid */}
         {filteredRecipes.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto">
-              <Book className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <div className="text-center py-12 animate-fade-in">
+            <div className="bg-white p-8 rounded-lg shadow-sm border border-orange-100 max-w-md mx-auto transform transition-all duration-300 hover:shadow-md">
+              <Book className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-pulse" />
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 {recipes.length === 0 ? 'No recipes yet' : 'No recipes found'}
               </h3>
@@ -280,7 +487,7 @@ const Index = () => {
               {recipes.length === 0 && (
                 <Button 
                   onClick={() => setIsAddDialogOpen(true)}
-                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                  className="bg-orange-500 hover:bg-orange-600 text-white transform transition-all duration-200 hover:scale-105"
                 >
                   <Plus className="h-4 w-4 mr-2" />
                   Add Your First Recipe
@@ -291,18 +498,24 @@ const Index = () => {
         ) : (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-8">
-              {currentRecipes.map((recipe) => (
-                <div key={recipe.id} className="relative group">
-                  <RecipeCard
-                    recipe={recipe}
-                    onClick={() => setSelectedRecipe(recipe)}
-                  />
-                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              {currentRecipes.map((recipe, index) => (
+                <div 
+                  key={recipe.id} 
+                  className="relative group animate-fade-in"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <div className="transform transition-all duration-300 hover:scale-105 hover:-translate-y-1">
+                    <RecipeCard
+                      recipe={recipe}
+                      onClick={() => setSelectedRecipe(recipe)}
+                    />
+                  </div>
+                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
                       onClick={() => handleEdit(recipe)}
                       size="sm"
                       variant="outline"
-                      className="bg-white/90 hover:bg-white h-8 w-8 p-0"
+                      className="bg-white/90 hover:bg-white h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110"
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
@@ -310,7 +523,7 @@ const Index = () => {
                       onClick={(e) => handleDelete(e, recipe.id)}
                       size="sm"
                       variant="outline"
-                      className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0"
+                      className="bg-white/90 hover:bg-red-50 hover:border-red-200 text-red-600 h-8 w-8 p-0 transform transition-all duration-200 hover:scale-110"
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
@@ -321,13 +534,13 @@ const Index = () => {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center">
+              <div className="flex justify-center animate-fade-in">
                 <Pagination>
                   <PaginationContent>
                     <PaginationItem>
                       <PaginationPrevious 
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                        className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                        className={`transition-all duration-200 ${currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:scale-105'}`}
                       />
                     </PaginationItem>
                     
@@ -338,7 +551,7 @@ const Index = () => {
                           <PaginationLink
                             onClick={() => setCurrentPage(pageNumber)}
                             isActive={currentPage === pageNumber}
-                            className="cursor-pointer"
+                            className="cursor-pointer transition-all duration-200 hover:scale-105"
                           >
                             {pageNumber}
                           </PaginationLink>
@@ -349,7 +562,7 @@ const Index = () => {
                     <PaginationItem>
                       <PaginationNext 
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                        className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                        className={`transition-all duration-200 ${currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer hover:scale-105'}`}
                       />
                     </PaginationItem>
                   </PaginationContent>
@@ -371,7 +584,7 @@ const Index = () => {
 
       {/* Edit Recipe Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto animate-scale-in">
           <DialogHeader>
             <DialogTitle>Edit Recipe</DialogTitle>
           </DialogHeader>

@@ -136,22 +136,22 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
       }
     } 
     //soups
-    if (category === 'soups') {
-      if (lowerCaseName.includes('tomato')){
-        return 'https://images.pexels.com/photos/1640775/pexels-photo-1640775.jpeg';
+   if (category === 'soups') {
+      if (lowerCaseName.includes('tomato')) {
+        return 'https://images.pexels.com/photos/3493579/pexels-photo-3493579.jpeg';
       }
       if (lowerCaseName.includes('chicken')) {
-        return 'https://images.pexels.com/photos/6164043/pexels-photo-6164043.jpeg';
+        return 'https://images.pexels.com/photos/2532442/pexels-photo-2532442.jpeg';
       }
       if (lowerCaseName.includes('vegetable') || lowerCaseName.includes('veg')) {
-        return 'https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg';
+        return 'https://images.pexels.com/photos/2664221/pexels-photo-2664221.jpeg';
       }
       if (lowerCaseName.includes('mushroom')) {
-        return 'https://images.pexels.com/photos/1059904/pexels-photo-1059904.jpeg';
+        return 'https://images.pexels.com/photos/4103375/pexels-photo-4103375.jpeg';
       }
       if (lowerCaseName.includes('hot') || lowerCaseName.includes('sour')) {
-        return 'https://images.pexels.com/photos/1640776/pexels-photo-1640776.jpeg';
-    }
+        return 'https://images.pexels.com/photos/18265285/pexels-photo-18265285.jpeg';
+      }
     }
 
     if (category === 'salads') {
@@ -159,16 +159,16 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
         return 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg';
       }
       if (lowerCaseName.includes('fruit')) {
-        return 'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg';
+        return 'https://images.pexels.com/photos/838846/pexels-photo-838846.jpeg';
       }
       if (lowerCaseName.includes('greek')) {
-        return 'https://images.pexels.com/photos/1640778/pexels-photo-1640778.jpeg';
+        return 'https://images.pexels.com/photos/1211887/pexels-photo-1211887.jpeg';
       }
-      if (lowerCaseName.includes('garden')){
-        return 'https://images.pexels.com/photos/1640779/pexels-photo-1640779.jpeg';
+      if (lowerCaseName.includes('garden')) {
+        return 'https://images.pexels.com/photos/32640458/pexels-photo-32640458.jpeg';
       }
       if (lowerCaseName.includes('quinoa')) {
-        return 'https://images.pexels.com/photos/1640780/pexels-photo-1640780.jpeg';
+        return 'https://images.pexels.com/photos/3872370/pexels-photo-3872370.jpeg';
       }
     }
 

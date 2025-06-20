@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -95,21 +94,117 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
     }
   };
 
+  const getCategoryImage = (recipe: Recipe) => {
+    const { category, name } = recipe;
+    const lowerCaseName = name.toLowerCase();
+
+    if (category === 'biryani') {
+      if (lowerCaseName.includes('chicken')) {
+        return 'https://images.pexels.com/photos/12737656/pexels-photo-12737656.jpeg';
+      }
+      if (lowerCaseName.includes('mutton')) {
+        return 'https://images.pexels.com/photos/5410401/pexels-photo-5410401.jpeg';
+      }
+      if (lowerCaseName.includes('vegetable') || lowerCaseName.includes('veg')) {
+        return 'https://images.pexels.com/photos/9609859/pexels-photo-9609859.jpeg';
+      }
+      if (lowerCaseName.includes('egg')) {
+        return 'https://images.pexels.com/photos/9609853/pexels-photo-9609853.jpeg';
+      }
+      if (lowerCaseName.includes('prawn')) {
+        return 'https://images.pexels.com/photos/9609861/pexels-photo-9609861.jpeg';
+      }else {
+        return 'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg';
+      }
+    }
+
+    if (category === 'shakes') {
+      if (lowerCaseName.includes('mango')) {
+        return 'https://images.pexels.com/photos/5150211/pexels-photo-5150211.jpeg';
+      }
+      if (lowerCaseName.includes('chocolate')) {
+        return 'https://images.pexels.com/photos/2128271/pexels-photo-2128271.jpeg';
+      }
+      if (lowerCaseName.includes('banana')) {
+        return 'https://images.pexels.com/photos/7491906/pexels-photo-7491906.jpeg';
+      }
+      if (lowerCaseName.includes('strawberry')) {
+        return 'https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg';
+      }
+      if (lowerCaseName.includes('oreo')) {
+        return 'https://images.pexels.com/photos/28525199/pexels-photo-28525199.jpeg';
+      }
+    }
+
+    // You can add more special handling for other categories here. For example:
+    if (category === 'curries' || category === 'non-veg-curries') {
+      if (lowerCaseName.includes('paneer')) {
+        return 'https://images.pexels.com/photos/9609835/pexels-photo-9609835.jpeg';
+      }
+      if (lowerCaseName.includes('fish')) {
+        return 'https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg';
+      }
+    }
+
+    // Fallback to the generic category image map
+    const imageMap: { [key: string]: string } = {
+      'biryani': 'https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg',
+      'fried-rice': 'https://images.pexels.com/photos/3926124/pexels-photo-3926124.jpeg',
+      'pickles': 'https://images.pexels.com/photos/5951869/pexels-photo-5951869.jpeg',
+      'shakes': 'https://images.pexels.com/photos/3727250/pexels-photo-3727250.jpeg',
+      'soups': 'https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg',
+      'salads': 'https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg',
+      'detox-water': 'https://images.pexels.com/photos/338713/pexels-photo-338713.jpeg',
+      'curries': 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg',
+      'non-veg-curries': 'https://images.pexels.com/photos/2641886/pexels-photo-2641886.jpeg',
+      'snacks': 'https://images.pexels.com/photos/2122294/pexels-photo-2122294.jpeg',
+      'juices': 'https://images.pexels.com/photos/1337825/pexels-photo-1337825.jpeg',
+      'desserts-sweets': 'https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg',
+      'breakfast': 'https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg',
+      'street-food': 'https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg',
+      'south-indian': 'https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg',
+      'north-indian': 'https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg',
+      'chinese': 'https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg',
+      'italian': 'https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg',
+      'mexican': 'https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg',
+      'rice-varieties': 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg',
+      'roti-paratha': 'https://images.pexels.com/photos/9410603/pexels-photo-9410603.jpeg',
+      'gravy-dishes': 'https://images.pexels.com/photos/674574/pexels-photo-674574.jpeg',
+      'tandoori': 'https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg',
+      'stir-fry': 'https://images.pexels.com/photos/1251198/pexels-photo-1251198.jpeg',
+      'healthy-low-cal': 'https://images.pexels.com/photos/1640775/pexels-photo-1640775.jpeg',
+      'festive-specials': 'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg',
+      'one-pot-meals': 'https://images.pexels.com/photos/5848493/pexels-photo-5848493.jpeg',
+      'baking-cakes': 'https://images.pexels.com/photos/1721934/pexels-photo-1721934.jpeg',
+      'ice-creams': 'https://images.pexels.com/photos/1352278/pexels-photo-1352278.jpeg',
+      'sandwiches-wraps': 'https://images.pexels.com/photos/1600727/pexels-photo-1600727.jpeg',
+      'dips-chutneys': 'https://images.pexels.com/photos/5620877/pexels-photo-5620877.jpeg',
+      'beverages-mocktails': 'https://images.pexels.com/photos/1187766/pexels-photo-1187766.jpeg',
+      'kids-special': 'https://images.pexels.com/photos/3662132/pexels-photo-3662132.jpeg',
+      'party-starters': 'https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg',
+      'quick-easy': 'https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg',
+      'lunch-box': 'https://images.pexels.com/photos/8089272/pexels-photo-8089272.jpeg',
+    };
+    return imageMap[category] || '';
+  };
+
+  const categoryImage = getCategoryImage(recipe);
+
   return (
     <Card 
       className="cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105 bg-white border-orange-100 hover:border-orange-300"
       onClick={onClick}
     >
       <CardHeader className="p-0">
-        {recipe.image ? (
+        {recipe.image || categoryImage ? (
           <div className="relative">
             <img
-              src={recipe.image}
+              src={recipe.image || categoryImage}
               alt={recipe.name}
               className="w-full h-48 object-cover rounded-t-lg"
             />
             <Badge 
-              className={`absolute top-2 left-2 ${getCategoryColor(recipe.category)}`}
+              className={absolute top-2 left-2 ${getCategoryColor(recipe.category)}}
             >
               {getCategoryLabel(recipe.category)}
             </Badge>
@@ -118,7 +213,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
           <div className="w-full h-48 bg-gradient-to-br from-orange-100 to-red-100 rounded-t-lg flex items-center justify-center relative">
             <ChefHat className="h-12 w-12 text-orange-400" />
             <Badge 
-              className={`absolute top-2 left-2 ${getCategoryColor(recipe.category)}`}
+              className={absolute top-2 left-2 ${getCategoryColor(recipe.category)}}
             >
               {getCategoryLabel(recipe.category)}
             </Badge>

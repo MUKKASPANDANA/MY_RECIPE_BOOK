@@ -5,7 +5,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   // Biryani - 5 items
   {
     name: "Chicken Biryani",
-    image: "https://images.unsplash.com/photo-1563379091339-03246963d117?w=800",
     ingredients: ["2 cups basmati rice", "500g chicken pieces", "2 onions sliced", "1 cup yogurt", "2 tbsp ginger-garlic paste", "Biryani masala", "Saffron", "Mint leaves", "Coriander leaves", "Ghee"],
     steps: ["Soak rice for 30 minutes", "Marinate chicken with yogurt and spices for 1 hour", "Fry onions until golden brown", "Cook marinated chicken until 70% done", "Boil rice with whole spices until 70% cooked", "Layer rice and chicken alternately", "Sprinkle fried onions, mint, and saffron milk", "Cook on dum for 45 minutes"],
     category: "biryani",
@@ -14,7 +13,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Mutton Biryani",
-    image: "https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?w=800",
     ingredients: ["2 cups basmati rice", "500g mutton pieces", "2 onions", "1 cup yogurt", "Garam masala", "Red chili powder", "Turmeric", "Saffron", "Mint leaves", "Ghee"],
     steps: ["Marinate mutton with yogurt and spices for 2 hours", "Cook mutton until tender", "Prepare rice with whole spices", "Layer cooked mutton and rice", "Garnish with fried onions and herbs", "Cook on dum for 1 hour"],
     category: "biryani",
@@ -23,7 +21,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Vegetable Biryani",
-    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800",
     ingredients: ["2 cups basmati rice", "Mixed vegetables", "Paneer cubes", "Cashews", "Raisins", "Biryani masala", "Saffron", "Mint leaves", "Ghee", "Onions"],
     steps: ["Soak rice for 30 minutes", "Sauté vegetables with spices", "Cook rice with whole spices until 70% done", "Layer vegetables and rice", "Sprinkle nuts, raisins, and herbs", "Cook on dum for 30 minutes"],
     category: "biryani",
@@ -32,7 +29,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Prawn Biryani",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800",
     ingredients: ["2 cups basmati rice", "500g prawns", "Coconut milk", "Curry leaves", "Mustard seeds", "Turmeric", "Red chili powder", "Garam masala", "Mint leaves", "Ghee"],
     steps: ["Clean and marinate prawns", "Cook prawns with spices", "Prepare rice with coconut milk", "Layer prawns and rice", "Garnish with herbs", "Cook on dum for 40 minutes"],
     category: "biryani",
@@ -41,7 +37,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Egg Biryani",
-    image: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=800",
     ingredients: ["2 cups basmati rice", "6 boiled eggs", "2 onions", "Tomatoes", "Yogurt", "Biryani masala", "Saffron", "Mint leaves", "Coriander leaves", "Ghee"],
     steps: ["Boil and fry eggs until golden", "Prepare masala gravy", "Cook rice with whole spices", "Layer eggs and rice with gravy", "Garnish with herbs and fried onions", "Cook on dum for 35 minutes"],
     category: "biryani",
@@ -52,7 +47,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   // Shakes - 5 items
   {
     name: "Mango Shake",
-    image: "https://images.unsplash.com/photo-1548373902-d5b6ad046224?w=800",
     ingredients: ["2 ripe mangoes", "1 cup milk", "2 tbsp sugar", "Ice cubes", "Cardamom powder"],
     steps: ["Peel and chop mangoes", "Blend mangoes with milk and sugar", "Add ice cubes and cardamom", "Blend until smooth", "Serve chilled with garnish"],
     category: "shakes",
@@ -61,7 +55,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Chocolate Shake",
-    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=800",
     ingredients: ["2 cups milk", "3 tbsp cocoa powder", "2 tbsp sugar", "Vanilla ice cream", "Chocolate chips", "Whipped cream"],
     steps: ["Heat milk slightly", "Mix cocoa powder and sugar", "Blend with ice cream", "Add chocolate chips", "Top with whipped cream", "Serve immediately"],
     category: "shakes",
@@ -70,7 +63,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Banana Shake",
-    image: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800",
     ingredients: ["3 ripe bananas", "1.5 cups milk", "2 tbsp honey", "Vanilla extract", "Ice cubes", "Nuts for garnish"],
     steps: ["Peel and slice bananas", "Blend bananas with milk", "Add honey and vanilla", "Blend with ice cubes", "Garnish with nuts", "Serve fresh"],
     category: "shakes",
@@ -79,7 +71,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Strawberry Shake",
-    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800",
     ingredients: ["1 cup fresh strawberries", "1 cup milk", "2 tbsp sugar", "Vanilla ice cream", "Ice cubes", "Fresh strawberries for garnish"],
     steps: ["Wash and hull strawberries", "Blend strawberries with milk", "Add sugar and ice cream", "Blend until smooth", "Garnish with fresh strawberries", "Serve chilled"],
     category: "shakes",
@@ -88,7 +79,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Oreo Shake",
-    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=800",
     ingredients: ["8 Oreo cookies", "1.5 cups milk", "Vanilla ice cream", "Chocolate syrup", "Whipped cream", "Crushed Oreos for topping"],
     steps: ["Crush 6 Oreo cookies", "Blend with milk and ice cream", "Add chocolate syrup", "Blend until smooth", "Top with whipped cream", "Garnish with crushed Oreos"],
     category: "shakes",
@@ -99,7 +89,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   // Soups - 5 items
   {
     name: "Tomato Soup",
-    image: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800",
     ingredients: ["6 large tomatoes", "1 onion", "2 garlic cloves", "Fresh basil", "Vegetable broth", "Heavy cream", "Salt", "Black pepper", "Olive oil"],
     steps: ["Roast tomatoes and onions", "Sauté garlic in olive oil", "Blend roasted vegetables with broth", "Strain the mixture", "Add cream and seasonings", "Garnish with basil and serve hot"],
     category: "soups",
@@ -108,7 +97,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Chicken Corn Soup",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800",
     ingredients: ["200g chicken breast", "1 cup sweet corn", "3 cups chicken broth", "2 eggs", "2 tbsp cornstarch", "Soy sauce", "White pepper", "Spring onions", "Ginger"],
     steps: ["Boil and shred chicken", "Heat chicken broth", "Add corn and chicken", "Mix cornstarch with water", "Add to soup while stirring", "Beat eggs and add slowly", "Season and garnish"],
     category: "soups",
@@ -117,7 +105,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Vegetable Soup",
-    image: "https://images.unsplash.com/photo-1588566565463-180a5b2090d2?w=800",
     ingredients: ["Mixed vegetables", "Vegetable broth", "Onion", "Garlic", "Herbs", "Olive oil", "Salt", "Black pepper", "Bay leaves"],
     steps: ["Chop all vegetables", "Sauté onions and garlic", "Add vegetables and broth", "Simmer with herbs", "Season to taste", "Serve hot with bread"],
     category: "soups",
@@ -126,7 +113,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Mushroom Soup",
-    image: "https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?w=800",
     ingredients: ["500g mushrooms", "2 onions", "3 garlic cloves", "Vegetable broth", "Heavy cream", "Thyme", "Bay leaves", "Butter", "Salt", "White pepper"],
     steps: ["Slice mushrooms and onions", "Sauté in butter until golden", "Add garlic and herbs", "Pour in broth and simmer", "Blend partially for texture", "Add cream and season"],
     category: "soups",
@@ -135,7 +121,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Hot and Sour Soup",
-    image: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800",
     ingredients: ["200g tofu", "Mushrooms", "Bamboo shoots", "Chicken broth", "Soy sauce", "Vinegar", "Chili sauce", "Cornstarch", "Egg", "Spring onions"],
     steps: ["Slice tofu and vegetables", "Heat chicken broth", "Add vegetables and tofu", "Mix sauces and add to soup", "Thicken with cornstarch", "Add beaten egg slowly", "Garnish and serve"],
     category: "soups",
@@ -146,7 +131,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   // Salads - 5 items
   {
     name: "Caesar Salad",
-    image: "https://images.unsplash.com/photo-1551248429-40975aa4de74?w=800",
     ingredients: ["Romaine lettuce", "Croutons", "Parmesan cheese", "Caesar dressing", "Anchovy fillets", "Garlic", "Lemon juice", "Olive oil", "Black pepper"],
     steps: ["Wash and chop lettuce", "Prepare Caesar dressing", "Toss lettuce with dressing", "Add croutons and cheese", "Garnish with anchovies", "Serve immediately"],
     category: "salads",
@@ -155,7 +139,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Greek Salad",
-    image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800",
     ingredients: ["Cucumber", "Tomatoes", "Red onion", "Feta cheese", "Olives", "Olive oil", "Lemon juice", "Oregano", "Salt", "Black pepper"],
     steps: ["Chop all vegetables", "Crumble feta cheese", "Mix vegetables and cheese", "Prepare dressing with oil and lemon", "Toss salad with dressing", "Top with olives and oregano"],
     category: "salads",
@@ -164,7 +147,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Garden Salad",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800",
     ingredients: ["Mixed greens", "Cherry tomatoes", "Cucumber", "Carrots", "Bell peppers", "Red onion", "Olive oil", "Balsamic vinegar", "Salt", "Herbs"],
     steps: ["Wash and prepare all vegetables", "Slice vegetables uniformly", "Mix all vegetables in a bowl", "Prepare vinaigrette", "Toss salad with dressing", "Serve fresh"],
     category: "salads",
@@ -173,7 +155,6 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Fruit Salad",
-    image: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=800",
     ingredients: ["Apple", "Orange", "Grapes", "Strawberries", "Kiwi", "Pineapple", "Honey", "Lemon juice", "Mint leaves", "Chaat masala"],
     steps: ["Wash and chop all fruits", "Mix fruits in a large bowl", "Drizzle with honey and lemon", "Add chaat masala", "Garnish with mint", "Chill before serving"],
     category: "salads",
@@ -182,58 +163,10 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   },
   {
     name: "Quinoa Salad",
-    image: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?w=800",
     ingredients: ["1 cup quinoa", "Cherry tomatoes", "Cucumber", "Red bell pepper", "Red onion", "Parsley", "Lemon juice", "Olive oil", "Salt", "Black pepper"],
     steps: ["Cook quinoa and let cool", "Chop all vegetables", "Mix quinoa with vegetables", "Prepare lemon vinaigrette", "Toss salad with dressing", "Let flavors meld before serving"],
     category: "salads",
     prepTime: "25 minutes",
     servings: "3-4"
-  },
-
-  // Detox Water - 5 items
-  {
-    name: "Lemon Mint Detox Water",
-    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800",
-    ingredients: ["1 lemon sliced", "Fresh mint leaves", "1 liter water", "Ice cubes", "Honey (optional)"],
-    steps: ["Wash lemon and mint thoroughly", "Slice lemon into rounds", "Add lemon slices to water", "Add fresh mint leaves", "Let infuse for 2-3 hours", "Serve chilled with ice"],
-    category: "detox-water",
-    prepTime: "5 minutes + 2 hours infusion",
-    servings: "4"
-  },
-  {
-    name: "Cucumber Lime Detox Water",
-    image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=800",
-    ingredients: ["1 cucumber sliced", "2 limes sliced", "1 liter water", "Ice cubes", "Fresh basil leaves"],
-    steps: ["Wash cucumber and limes", "Slice cucumber and limes", "Add to water with basil", "Refrigerate for 3-4 hours", "Strain if desired", "Serve over ice"],
-    category: "detox-water",
-    prepTime: "10 minutes + 3 hours infusion",
-    servings: "4"
-  },
-  {
-    name: "Ginger Turmeric Detox Water",
-    image: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=800",
-    ingredients: ["1 inch fresh ginger", "1 tsp turmeric powder", "1 lemon juiced", "1 liter warm water", "Honey to taste", "Black pepper pinch"],
-    steps: ["Grate fresh ginger", "Mix turmeric with warm water", "Add grated ginger", "Add lemon juice and honey", "Stir in black pepper", "Let cool and refrigerate"],
-    category: "detox-water",
-    prepTime: "8 minutes",
-    servings: "3-4"
-  },
-  {
-    name: "Apple Cinnamon Detox Water",
-    image: "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=800",
-    ingredients: ["2 apples sliced", "2 cinnamon sticks", "1 liter water", "Ice cubes", "Star anise (optional)"],
-    steps: ["Wash and slice apples", "Add apple slices to water", "Add cinnamon sticks", "Optional: add star anise", "Refrigerate overnight", "Serve chilled"],
-    category: "detox-water",
-    prepTime: "5 minutes + overnight infusion",
-    servings: "4"
-  },
-  {
-    name: "Berry Mint Detox Water",
-    image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800",
-    ingredients: ["Mixed berries (strawberries, blueberries)", "Fresh mint leaves", "1 liter water", "Ice cubes", "Lemon slices"],
-    steps: ["Wash berries and mint", "Muddle berries gently", "Add to water with mint", "Add lemon slices", "Refrigerate for 2-4 hours", "Serve with fresh ice"],
-    category: "detox-water",
-    prepTime: "10 minutes + 2 hours infusion",
-    servings: "4"
   }
 ];

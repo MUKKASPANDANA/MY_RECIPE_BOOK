@@ -213,7 +213,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
           <div className="w-full h-48 bg-gradient-to-br from-orange-100 to-red-100 rounded-t-lg flex items-center justify-center relative">
             <ChefHat className="h-12 w-12 text-orange-400" />
             <Badge 
-              className={absolute top-2 left-2 ${getCategoryColor(recipe.category)}}
+              className={'absolute top-2 left-2 ${getCategoryColor(recipe.category)}'}
             >
               {getCategoryLabel(recipe.category)}
             </Badge>

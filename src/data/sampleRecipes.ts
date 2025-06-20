@@ -6,6 +6,7 @@ export const sampleRecipes: Omit<Recipe, 'id'>[] = [
   // Biryani - 5 items
   {
     name: "Chicken Biryani",
+    image: "https://www.google.com/imgres?q=biryani&imgurl=https%3A%2F%2Fwww.cubesnjuliennes.com%2Fwp-content%2Fuploads%2F2020%2F07%2FChicken-Biryani-Recipe.jpg&imgrefurl=https%3A%2F%2Fwww.cubesnjuliennes.com%2Fchicken-biryani-recipe%2F&docid=e57KRb4KX1xRjM&tbnid=fRxFwqL1N4CsqM&vet=12ahUKEwi_2Y_k1P-NAxUA4DgGHXkMErwQM3oECBwQAA..i&w=1200&h=1200&hcb=2&ved=2ahUKEwi_2Y_k1P-NAxUA4DgGHXkMErwQM3oECBwQAA"
     ingredients: ["2 cups basmati rice", "500g chicken pieces", "2 onions sliced", "1 cup yogurt", "2 tbsp ginger-garlic paste", "Biryani masala", "Saffron", "Mint leaves", "Coriander leaves", "Ghee"],
     steps: ["Soak rice for 30 minutes", "Marinate chicken with yogurt and spices for 1 hour", "Fry onions until golden brown", "Cook marinated chicken until 70% done", "Boil rice with whole spices until 70% cooked", "Layer rice and chicken alternately", "Sprinkle fried onions, mint, and saffron milk", "Cook on dum for 45 minutes"],
     category: "biryani",

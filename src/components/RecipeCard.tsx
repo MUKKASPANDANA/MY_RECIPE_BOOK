@@ -134,6 +134,42 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
       if (lowerCaseName.includes('oreo')) {
         return 'https://images.pexels.com/photos/28525199/pexels-photo-28525199.jpeg';
       }
+    } 
+    //soups
+    if (category === 'soups') {
+      if (lowerCaseName.includes('tomato')){
+        return 'https://images.pexels.com/photos/1640775/pexels-photo-1640775.jpeg';
+      }
+      if (lowerCaseName.includes('chicken')) {
+        return 'https://images.pexels.com/photos/6164043/pexels-photo-6164043.jpeg';
+      }
+      if (lowerCaseName.includes('vegetable') || lowerCaseName.includes('veg')) {
+        return 'https://images.pexels.com/photos/1059905/pexels-photo-1059905.jpeg';
+      }
+      if (lowerCaseName.includes('mushroom')) {
+        return 'https://images.pexels.com/photos/1059904/pexels-photo-1059904.jpeg';
+      }
+      if (lowerCaseName.includes('hot') || lowerCaseName.includes('sour')) {
+        return 'https://images.pexels.com/photos/1640776/pexels-photo-1640776.jpeg';
+    }
+    }
+
+    if (category === 'salads') {
+      if (lowerCaseName.includes('caesar')) {
+        return 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg';
+      }
+      if (lowerCaseName.includes('fruit')) {
+        return 'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg';
+      }
+      if (lowerCaseName.includes('greek')) {
+        return 'https://images.pexels.com/photos/1640778/pexels-photo-1640778.jpeg';
+      }
+      if (lowerCaseName.includes('garden')){
+        return 'https://images.pexels.com/photos/1640779/pexels-photo-1640779.jpeg';
+      }
+      if (lowerCaseName.includes('quinoa')) {
+        return 'https://images.pexels.com/photos/1640780/pexels-photo-1640780.jpeg';
+      }
     }
 
     // You can add more special handling for other categories here. For example:

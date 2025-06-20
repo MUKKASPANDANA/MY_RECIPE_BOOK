@@ -204,7 +204,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, onClick }) => {
               className="w-full h-48 object-cover rounded-t-lg"
             />
             <Badge 
-              className={absolute top-2 left-2 ${getCategoryColor(recipe.category)}}
+              className={'absolute top-2 left-2 ${getCategoryColor(recipe.category)}'}
             >
               {getCategoryLabel(recipe.category)}
             </Badge>

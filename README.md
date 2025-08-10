@@ -1,8 +1,8 @@
-**Recipe Book**
+## 📙**Recipe Book**
 
 A **Recipe Book Web Application** built using **HTML, CSS, and JavaScript** that allows users to **add, view, search, edit, and delete recipes** with a simple and elegant interface. All recipes are stored in the browser for persistence, even after refreshing or closing the tab. Recipes are also **categorized** for better organization.
 
-🚀 Live Demo
+## 🚀 Live Demo
 https://my-recipes-book-gamma.vercel.app/
 
 ## 📌 Features

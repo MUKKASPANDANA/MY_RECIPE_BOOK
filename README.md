@@ -5,7 +5,7 @@ A **Recipe Book Web Application** built using **HTML, CSS, and JavaScript** that
 🚀 Live Demo
 https://my-recipes-book-gamma.vercel.app/
 
-📌 Features
+##📌 Features
 
 - **Add Recipes**
   - Enter recipe name, ingredients, preparation steps, and upload an image.
@@ -34,14 +34,14 @@ https://my-recipes-book-gamma.vercel.app/
   - Attractive, responsive layout with clear navigation.
   - Smooth and intuitive user experience.
 
-🛠️ Tech Stack
+##🛠️ Tech Stack
 
 - **HTML** – Structure of the app.
 - **CSS** – Styling and layout (responsive design).
 - **JavaScript** – Dynamic functionality, event handling, and local storage.
 - **localStorage** – Data persistence in the browser.
 
-📋 How It Works
+##📋 How It Works
 
 1. **Adding a Recipe**
    - Fill out the form with the recipe's **name, ingredients, steps, image**, and **category**.
